@@ -43,6 +43,23 @@
 
 </head>
 <body>
+    <!-- Cookie Consent Banner -->
+    <div class="position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 1000;" id="cookieConsent">
+        <div class="toast show bg-dark text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Cookie Policy</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close" onclick="acceptCookies()"></button>
+            </div>
+            <div class="toast-body">
+                We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+                <div class="mt-2">
+                    <button type="button" class="btn btn-light btn-sm" onclick="acceptCookies()">Accept</button>
+                    <button type="button" class="btn btn-outline-light btn-sm ms-2" onclick="declineCookies()">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="carouselExampleFade" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -119,30 +136,72 @@
             setInterval(function() {
                 bsCarousel.next();
             }, 3000);
+
+            // Check if cookies were already accepted
+            if (localStorage.getItem('cookiesAccepted') === 'true') {
+                document.getElementById('cookieConsent').style.display = 'none';
+            }
         });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookiesAccepted', 'false');
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
     </script>
 
     <div class="container py-5" id="content">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Our Story</h3>
-                <p>West Beans was founded with a passion for bringing the finest coffee experience to our customers. Our journey began with a simple idea: to create a space where coffee lovers could enjoy exceptional beverages in a welcoming atmosphere.</p>
+
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Our Premium Offerings</h2>
             </div>
-            <div class="col-md-6">
-                <h3>Our Mission</h3>
-                <p>We are committed to sourcing the highest quality coffee beans from sustainable farms around the world. Every cup we serve is crafted with care, expertise, and attention to detail, ensuring an unforgettable coffee experience.</p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="assets/img/logo.jpg" class="card-img-top" alt="Artisanal Coffee Beans">
+                    <div class="card-body">
+                        <h5 class="card-title">Artisanal Coffee Beans</h5>
+                        <p class="card-text">Meticulously sourced single-origin beans from renowned growing regions, roasted in small batches to ensure optimal flavor profiles. Available in light, medium, and dark roasts.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12">
-                <h3>Visit Us</h3>
-                <p>Come experience the West Beans difference at our location. We're open daily from 7 AM to 8 PM.</p>
-                <p>Address: 123 Coffee Street, Istanbul, Turkey</p>
-                <p>Phone: +90 212 345 67 89</p>
-                <p>Email: info@westbeans.com</p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="assets/img/logo.jpg" class="card-img-top" alt="Handcrafted Beverages">
+                    <div class="card-body">
+                        <h5 class="card-title">Handcrafted Beverages</h5>
+                        <p class="card-text">Expertly prepared espresso-based drinks and signature cold brews, crafted by our certified baristas using precise techniques and premium ingredients.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="assets/img/logo.jpg" class="card-img-top" alt="Artisanal Pastries">
+                    <div class="card-body">
+                        <h5 class="card-title">Artisanal Pastries</h5>
+                        <p class="card-text">House-made pastries and desserts prepared daily by our skilled pastry chefs using premium ingredients. Perfectly complementing our coffee selections.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 West Beans. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="assets/js/script.js"></script>
     <!-- Bootstrap JS Bundle with Popper -->
