@@ -799,7 +799,6 @@ section {
 .header .container h1 span {
   -webkit-text-stroke-width: 1px;
   transform: translateY(-35%);
-  margin-left: 4%;
   display: flex;
   -webkit-text-stroke-color: #fff;
   color: transparent;
@@ -1329,9 +1328,8 @@ header .sound .equalizer .holder {
 .swiper-slider .swiper-slide .slide-inner .container h1 span {
   -webkit-text-stroke-width: 1px;
   transform: translateY(-35%);
-  margin-left: 4%;
   display: flex;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: white;
   color: transparent;
 }
 .swiper-slider .swiper-slide .slide-inner .container .slide-btn {
@@ -1575,7 +1573,6 @@ s .process span:before {
 .services-content-block span {
   width: 50px;
   height: 1px;
-  background: #E30613;
   display: inline-block;
   margin: 5px 15px;
 }

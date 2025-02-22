@@ -85,21 +85,17 @@
   </div>
   <!-- end navigation-menu -->
   <nav class="navbar">
-    <div class="left p-2 m-5">
+    <div class="container">
       <a href="index.html"><img src="images/footer_log-01.svg" height="56px"></a>
-    </div>
-
-    <div class="right">
-      <ul class="language">
-        <li><a href="#" style="font-size: 18px;"></a>TR</li>
-        <li><a href="#" style="font-size: 18px;"></a>EN</li>
-      </ul>
-      <div class="hamburger-menu" style="color: #ffffff !important;"><b>MENU</b>
-        <div class="hamburger" id="hamburger-menu"> <span></span> <span></span> <span></span> </div>
+      <div class="hamburger-menu" style="color: #ffffff !important; display: flex; align-items: center;">
+        <div class="hamburger" id="hamburger-menu" style="cursor: pointer;">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <b onclick="document.getElementById('hamburger-menu').click()"
+          style="margin-left: 20px; cursor: pointer;">MENU</b>
       </div>
-      <!-- end hamburger-menu -->
-    </div>
-    <!-- end right -->
   </nav>
   <!-- end navbar -->
   <header class="header">
@@ -120,31 +116,24 @@
             </div>
             <!-- <video src="videos/celiksan.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video> -->
             <div class="container">
-              <div class="tagline" style="color: black !important;">
-              </div>
-              <div class="slide-btn"> <a href="#">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px" y="0px" viewBox="0 0 104 104" enable-background="new 0 0 104 104" xml:space="preserve">
-                    <circle class="video-play-circle" fill="none" stroke="#1D1D1B" stroke-width="2"
-                      stroke-miterlimit="1" cx="52" cy="52" r="50" />
-                  </svg>
-                </a> </div>
-              <!-- end slide-btn -->
-            </div>
-            <!-- end container -->
-          </div>
-          <!-- end slide-inner -->
-        </div>
+              <h1 style="font-size: 90px;">Stronger<br>Equipment<br>
+                <span class="" style="font-size: 90px;">Safer Rescues!</span>
+              </h1>
 
-        <!-- end swiper-slide -->
+              <!-- end container -->
+            </div>
+            <!-- end slide-inner -->
+          </div>
+
+          <!-- end swiper-slide -->
+        </div>
+        <!-- end swiper-wrapper -->
+        <div class="swiper-pagination"></div>
+        <!-- end swiper-pagination -->
+        <div class="swiper-fraction"></div>
+        <!-- end swiper-fraction -->
       </div>
-      <!-- end swiper-wrapper -->
-      <div class="swiper-pagination"></div>
-      <!-- end swiper-pagination -->
-      <div class="swiper-fraction"></div>
-      <!-- end swiper-fraction -->
-    </div>
-    <!-- end swiper-slider -->
+      <!-- end swiper-slider -->
   </header>
   <!-- end header -->
   <section class="intro">
