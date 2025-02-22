@@ -1058,10 +1058,6 @@ header .sound .equalizer .holder {
 .navbar a {
   color: #fff;
 }
-.navbar .left {
-  width: 30%;
-  margin-left: 0;
-}
 .navbar .left a {
   position: relative;
   padding-bottom: 6px;
@@ -1090,6 +1086,7 @@ header .sound .equalizer .holder {
   width: 30%;
   margin-right: 0;
   display: flex;
+  padding-right: 100px;
 }
 .navbar .right ul {
   margin-left: auto;
@@ -1128,6 +1125,7 @@ header .sound .equalizer .holder {
   display: inline-block;
   font-weight: 400;
   margin-right: 15px;
+  font-size: 18px;
 }
 
 /* SLIDE BTN */
@@ -1272,7 +1270,6 @@ header .sound .equalizer .holder {
   content: "";
   width: 100%;
   height: 100%;
-  background: url(../images/bg-noise.gif);
   opacity: 0.04;
   position: absolute;
   left: 0;
@@ -1285,7 +1282,6 @@ header .sound .equalizer .holder {
   position: absolute;
   left: 0;
   top: 0;
-  background: url(../images/bg-lines.png) center;
   z-index: 1;
 }
 .swiper-slider .swiper-slide .slide-inner .container {
@@ -2369,7 +2365,8 @@ s .process span:before {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  padding: 100px 0;
+  padding-top: 100px;
+  
   background: #0e0e0e;
   color: #fff;
 }
@@ -2382,7 +2379,7 @@ s .process span:before {
 .footer .footer-quote img {
   height: 60px;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 .footer .footer-quote h2 {
   font-size: 3vw;
@@ -2940,7 +2937,7 @@ s .process span:before {
   }
 
   .footer .footer-quote img {
-    margin-bottom: 40px;
+    margin-bottom: 0px;
   }
 
   .footer .footer-quote {
