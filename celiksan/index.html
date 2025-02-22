@@ -484,6 +484,30 @@
     </div>
   </div>
 
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('contactMenu');
+      if (menu.style.display === 'none') {
+        menu.style.display = 'block';
+      } else {
+        menu.style.display = 'none';
+      }
+    }
+
+    document.getElementById('contactBtn').addEventListener('click', toggleMenu);
+    document.getElementById('contactText').addEventListener('click', toggleMenu);
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (event) {
+      const menu = document.getElementById('contactMenu');
+      const btn = document.getElementById('contactBtn');
+      const text = document.getElementById('contactText');
+      if (!btn.contains(event.target) && !menu.contains(event.target) && !text.contains(event.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+
   <audio id="hamburger-hover" src="audio/link.mp3" preload="auto"></audio>
 
   <!-- JS FILES -->
