@@ -1013,15 +1013,15 @@ header .scroll-down span::before {
 }
 header .sound {
   position: absolute;
-  right: 40px;
+  left: 40px;
   bottom: 40px;
   z-index: 3;
 }
 header .sound span {
   float: left;
-  color: black;
+  color: white;
   font-size: 14px;
-  margin-right: 10px;
+  margin-left: 10px;
   font-family: "Fjalla One", sans-serif;
 }
 header .sound .equalizer {
@@ -1343,6 +1343,8 @@ header .sound .equalizer .holder {
 }
 .swiper-slider .swiper-pagination-bullets .swiper-pagination-bullet {
   width: 100%;
+  color: #ffffff;
+  font-size: 16px;
   height: auto;
   float: left;
   margin: 5px 0;

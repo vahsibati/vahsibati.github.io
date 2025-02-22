@@ -128,16 +128,17 @@
         <!-- swiper-slider -->
         <div class="swiper-slider">
             <div class="swiper-wrapper">
+
                 <!-- swiper-slide -->
                 <div class="swiper-slide" data-tilt data-tilt-max="5" data-tilt-speed="500"
                     data-tilt-perspective="1500">
                     <div class="slide-inner">
                         <div class="video-bg">
-                            <video src="videos/celiksan.mp4" autoplay muted loop playsinline style="opacity: 0.2;"></video>
+                            <video src="videos/slide_video_3.mp4" autoplay muted loop playsinline style="opacity: 0.2;"></video>
                           </div>
                         <div class="container">
-                            <h1 style="font-size: 60px;">Stronger<br>Equipment<br>
-                                <span class="" style="font-size: 60px;">Safer Rescues!</span>
+                            <h1 style="font-size: 90px;">Manufacturing<br>the Future <br>
+                                <span class="mt-4" style="font-size: 90px;">of Firefighting!</span>
                             </h1>
                             <div class="slide-btn"> <a href="#">
                                     <!-- lines -->
@@ -158,29 +159,29 @@
                     <!-- end slide-inner -->
                 </div>
                 <!-- end swiper-slide -->
+
                 <!-- swiper-slide -->
                 <div class="swiper-slide" data-tilt data-tilt-max="5" data-tilt-speed="500"
                     data-tilt-perspective="1500">
-                    <div class="slide-inner bg-image" data-background="images/slide02.jpg">
+                    <div class="slide-inner">
+                        <div class="video-bg">
+                            <video src="videos/slide_video_1.mp4" autoplay muted loop playsinline style="opacity: 0.2;"></video>
+                          </div>
                         <div class="container">
-                            <div class="tagline"><span>CN 10-300
-                                    CNH 10-300 / 40-250</span>
-                                <h6>STRONG & RELIABLE</h6>
-                            </div>
-                            <!-- end tagline -->
-                            <h1>Bosphorus<br>
-                                <span>Series</span>
+                            <h1 style="font-size: 90px;">Stronger<br>Equipment<br>
+                                <span class="mt-4" style="font-size: 90px;">Safer Rescues!</span>
                             </h1>
                             <div class="slide-btn"> <a href="#">
-                                    <div class="lines"> <span></span> <span></span> </div>
+                                    <!-- lines -->
+                                    <div class="lines"> <span style="background-color: #ffffff;"></span> <span style="background-color: #ffffff;"></span> </div>
                                     <!-- end lines -->
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 104 104"
                                         enable-background="new 0 0 104 104" xml:space="preserve">
-                                        <circle class="video-play-circle" fill="none" stroke="#fff" stroke-width="2"
+                                        <circle class="video-play-circle" fill="none" stroke="#ffffff" stroke-width="2"
                                             stroke-miterlimit="1" cx="52" cy="52" r="50" />
                                     </svg>
-                                    <b>LEARN MORE</b>
+                                    <b class="text-white">LEARN MORE</b>
                                 </a> </div>
                             <!-- end slide-btn -->
                         </div>
@@ -189,29 +190,29 @@
                     <!-- end slide-inner -->
                 </div>
                 <!-- end swiper-slide -->
+
                 <!-- swiper-slide -->
                 <div class="swiper-slide" data-tilt data-tilt-max="5" data-tilt-speed="500"
                     data-tilt-perspective="1500">
-                    <div class="slide-inner bg-image" data-background="images/slide03.jpg">
+                    <div class="slide-inner">
+                        <div class="video-bg">
+                            <video src="videos/slide_video_2.mp4" autoplay muted loop playsinline style="opacity: 0.2;"></video>
+                          </div>
                         <div class="container">
-                            <div class="tagline"><span>CNT 10-3000
-                                    CNT 10-2000</span>
-                                <h6>STRONG & RELIABLE</h6>
-                            </div>
-                            <!-- end tagline -->
-                            <h1>Toma<br>
-                                <span>Series</span>
+                            <h1 style="font-size: 90px;">Crafted for Safety<br>
+                                <span class="mt-4" style="font-size: 90px;">Built for Action!</span>
                             </h1>
                             <div class="slide-btn"> <a href="#">
-                                    <div class="lines"> <span></span> <span></span> </div>
+                                    <!-- lines -->
+                                    <div class="lines"> <span style="background-color: #ffffff;"></span> <span style="background-color: #ffffff;"></span> </div>
                                     <!-- end lines -->
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 104 104"
                                         enable-background="new 0 0 104 104" xml:space="preserve">
-                                        <circle class="video-play-circle" fill="none" stroke="#fff" stroke-width="2"
+                                        <circle class="video-play-circle" fill="none" stroke="#ffffff" stroke-width="2"
                                             stroke-miterlimit="1" cx="52" cy="52" r="50" />
                                     </svg>
-                                    <b>LEARN MORE</b>
+                                    <b class="text-white">LEARN MORE</b>
                                 </a> </div>
                             <!-- end slide-btn -->
                         </div>
@@ -220,6 +221,7 @@
                     <!-- end slide-inner -->
                 </div>
                 <!-- end swiper-slide -->
+
                 <div class="swipe-up" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
                     <div class="arrow"></div>
                     <span>Swipe Up</span>
@@ -241,6 +243,37 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/swiper.min.js"></script>
+    <script>
+      // Initialize swiper with autoplay
+      var swiper = new Swiper('.swiper-slider', {
+        speed: 1000,
+        autoplay: {
+          delay: 5000, // 5 seconds delay between slides
+          disableOnInteraction: false, // Continue autoplay after user interaction
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true, // Make bullets clickable
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + '</span>';
+          }
+        },
+        on: {
+          slideChange: function () {
+            // Update active bullet on slide change
+            var bullets = document.querySelectorAll('.swiper-pagination-bullet');
+            bullets.forEach(function(bullet, index) {
+              if (index === swiper.realIndex) {
+                bullet.classList.add('swiper-pagination-bullet-active');
+              } else {
+                bullet.classList.remove('swiper-pagination-bullet-active'); 
+              }
+            });
+          }
+        }
+      });
+    </script>
     <script src="js/tilt.jquery.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/odometer.min.js"></script>
