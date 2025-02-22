@@ -863,7 +863,6 @@ section {
   position: absolute;
   left: 0;
   top: 0;
-  background: url(../images/bg-lines.png) center;
   z-index: 2;
 }
 .header .video-bg video {
@@ -2955,6 +2954,54 @@ s .process span:before {
 
   .footer .footer-bottom ul li {
     margin-right: 15px;
+  }
+}
+
+/* SWIPE UP BUTTON */
+.swipe-up {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.swipe-up .arrow {
+  width: 20px;
+  height: 20px;
+  border-left: 2px solid #fff;
+  border-top: 2px solid #fff;
+  transform: rotate(45deg);
+  margin-bottom: 10px;
+  animation: upAndDown 1.5s infinite;
+}
+
+.swipe-up span {
+  font-family: "Fjalla One", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.swipe-up:hover {
+  transform: translateX(-50%) translateY(-5px);
+}
+
+@keyframes upAndDown {
+  0% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(45deg);
+  }
+  100% {
+    transform: translateY(0) rotate(45deg);
   }
 }
 
