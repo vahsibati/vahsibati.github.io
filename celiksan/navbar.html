@@ -46,14 +46,9 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
+<body class="bg-dark">
 
-  <div class="transition-overlay">
-    <div class="layer"></div>
-    <div class="layer"></div>
-    <div class="layer"></div>
-    <div class="layer"></div>
-  </div>
-  <!-- end transition-overlay -->
+  <!-- nav -->
   <div class="navigation-menu">
     <div class="bg-layers"> <span></span> <span></span> <span></span> <span></span> </div>
     <!-- end bg-layers -->
@@ -72,36 +67,88 @@
     <!-- end inner -->
   </div>
 
-  
-  <!-- end navigation-menu -->
-  <nav class="navbar bg-dark">
-
+  <nav class="navbar">
     <div class="container">
-
-      <a href="index.html"><img src="images/footer_log-01.svg" height="56px"></a>
-
-      <!-- <ul class="language">
-        <li><a href="#" style="font-size: 18px;"></a>TR</li>
-        <li><a href="#" style="font-size: 18px;"></a>EN</li>
-      </ul> -->
-
-      <div class="hamburger-menu"  style="color: #ffffff !important; display: flex; align-items: center;">
-        <div class="hamburger" id="hamburger-menu"style="cursor: pointer;">
-          <span></span>
-          <span></span>
-          <span></span>
+      <div class="row">
+        <div style="flex: 0 0 auto;">
+          <a href="index.html"><img src="images/footer_log-01.svg" height="40px"></a>
         </div>
-        <b onclick="document.getElementById('hamburger-menu').click()" style="margin-left: 20px; cursor: pointer;">MENU</b>
+        <div style="flex: 0 0 auto;">
+          <div class="hamburger-menu" style="color: #ffffff !important; display: flex; align-items: center;">
+            <div class="hamburger" id="hamburger-menu" style="cursor: pointer;">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <b onclick="document.getElementById('hamburger-menu').click()"
+              style="margin-left: 10px; cursor: pointer;">MENU</b>
+          </div>
+        </div>
       </div>
+    </div>
   </nav>
-  
+  <!-- end nav -->
 
-  <audio id="hamburger-hover" src="audio/link.mp3" preload="auto"></audio>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('contactMenu');
+      if (menu.style.display === 'none') {
+        menu.style.display = 'block';
+      } else {
+        menu.style.display = 'none';
+      }
+    }
+
+    document.getElementById('contactBtn').addEventListener('click', toggleMenu);
+    document.getElementById('contactText').addEventListener('click', toggleMenu);
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (event) {
+      const menu = document.getElementById('contactMenu');
+      const btn = document.getElementById('contactBtn');
+      const text = document.getElementById('contactText');
+      if (!btn.contains(event.target) && !menu.contains(event.target) && !text.contains(event.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
 
   <!-- JS FILES -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/swiper.min.js"></script>
+  <script>
+    // Initialize swiper with autoplay
+    var swiper = new Swiper('.swiper-slider', {
+      speed: 1000,
+      autoplay: {
+        delay: 5000, // 5 seconds delay between slides
+        disableOnInteraction: false, // Continue autoplay after user interaction
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true, // Make bullets clickable
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + '</span>';
+        }
+      },
+      on: {
+        slideChange: function () {
+          // Update active bullet on slide change
+          var bullets = document.querySelectorAll('.swiper-pagination-bullet');
+          bullets.forEach(function (bullet, index) {
+            if (index === swiper.realIndex) {
+              bullet.classList.add('swiper-pagination-bullet-active');
+            } else {
+              bullet.classList.remove('swiper-pagination-bullet-active');
+            }
+          });
+        }
+      }
+    });
+  </script>
   <script src="js/tilt.jquery.js"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/odometer.min.js"></script>
@@ -109,7 +156,6 @@
   <script src="js/fancybox.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/scripts.js"></script>
-
 </body>
 
 </html>
