@@ -66,6 +66,8 @@
     <div class="layer"></div>
   </div>
   <!-- end transition-overlay -->
+
+  <!-- nav -->
   <div class="navigation-menu">
     <div class="bg-layers"> <span></span> <span></span> <span></span> <span></span> </div>
     <!-- end bg-layers -->
@@ -83,27 +85,31 @@
     </div>
     <!-- end inner -->
   </div>
-  <!-- end navigation-menu -->
+
   <nav class="navbar">
-    <div class="left"> <a href=""></a> </div>
-    <!-- end left -->
-    <div class="logo"> <a href="index.html"><img src="images/logo.png" alt="Image"></a> </div>
-    <!-- end logo -->
-    <div class="right">
-      <ul class="language">
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-      </ul>
-      <div class="hamburger-menu" style="color: black !important;"><b>MENU</b>
-        <div class="hamburger" id="hamburger-menu"> <span></span> <span></span> <span></span> </div>
+    <div class="container">
+      <div class="row">
+        <div style="flex: 0 0 auto;">
+          <a href="index.html"><img src="images/footer_log-01.svg" height="40px"></a>
+        </div>
+        <div style="flex: 0 0 auto;">
+          <div class="hamburger-menu" style="color: #ffffff !important; display: flex; align-items: center;">
+            <div class="hamburger" id="hamburger-menu" style="cursor: pointer;">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <b onclick="document.getElementById('hamburger-menu').click()"
+              style="margin-left: 10px; cursor: pointer;">MENU</b>
+          </div>
+        </div>
       </div>
-      <!-- end hamburger-menu -->
     </div>
-    <!-- end right -->
   </nav>
-  <!-- end navbar -->
-  <!-- end left-side -->
-  <!-- end scroll-down -->
+  <!-- end nav -->
+
+ 
+  <img src="images/hakkimizda-cls.jpg">
 
   <!-- end header -->
   <section class="intro">
@@ -127,7 +133,8 @@
           </div>
           <div class="timeline-content">
             <h4>Foundation</h4>
-            <p>Celiksan was established in Izmir, Turkey with the vision of manufacturing high-quality fire truck equipment.</p>
+            <p>Celiksan was established in Izmir, Turkey with the vision of manufacturing high-quality fire truck
+              equipment.</p>
           </div>
         </div>
 
@@ -189,7 +196,7 @@
           position: relative;
           padding: 40px 0;
         }
-        
+
         .timeline::before {
           content: '';
           position: absolute;
@@ -259,10 +266,12 @@
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
           }
+
           50% {
             transform: translate(-50%, -50%) scale(1.2);
             opacity: 0.5;
           }
+
           100% {
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
@@ -275,14 +284,18 @@
           <h4>OUR MISSION</h4>
         </div>
         <div class="col-md-7 wow fadeIn" data-wow-delay="0.10s">
-          <p>To give service to our customers by wide range of products based on knowledge and experience of our company that serves in Turkey more than 30 years. With the principle of reliability and honesty, to support our customers, standing by them whenever they need.</p>
+          <p>To give service to our customers by wide range of products based on knowledge and experience of our company
+            that serves in Turkey more than 30 years. With the principle of reliability and honesty, to support our
+            customers, standing by them whenever they need.</p>
         </div>
 
         <div class="col-md-5 wow fadeIn mt-4">
           <h4>OUR VISION</h4>
         </div>
         <div class="col-md-7 wow fadeIn mt-4" data-wow-delay="0.10s">
-          <p>To be a global company, that is among the world's leading firms, growing continuously with technological innovations, manufacturing goods according to expectations of customers, pleasing its customers and workers by enriching them and profitable to its country and society.</p>
+          <p>To be a global company, that is among the world's leading firms, growing continuously with technological
+            innovations, manufacturing goods according to expectations of customers, pleasing its customers and workers
+            by enriching them and profitable to its country and society.</p>
         </div>
       </div>
       <!-- end row -->
@@ -291,76 +304,227 @@
   </section>
   <!-- end intro -->
 
-  <!-- end services-content-block -->
 
-  <!-- end process -->
-
-
-  <!-- end awards -->
-
-  <!-- end clients -->
-  <footer class="footer">
-    <div class="footer-quote wow fadeIn">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8"> <img src="images/logo01.png" alt="Image">
+  <!-- media-links -->
+  <section class="media-links m-5 p-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 wow fadeIn">
+          <div class="media-box text-center">
+            <div class="icon-wrapper mb-4 d-flex justify-content-center align-items-center">
+              <i class="fa fa-play-circle" style="font-size: 64px; color: #e8293b;"></i>
+            </div>
+            <h4 class="mb-3">Videos</h4>
+            <p class="small text-muted mb-4">Watch our product videos and company presentations</p>
+            <div class="custom-link d-flex justify-content-center">
+              <a href="#" class="text-center">
+                <i class="fa fa-arrow-right" style="font-size: 12px; color: #6c757d; border: 2px solid #6c757d; border-radius: 50%; padding: 8px; display: inline-block;"></i>
+              </a>
+            </div>
           </div>
         </div>
-        <!-- end row -->
+
+        <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+          <div class="media-box text-center">
+            <div class="icon-wrapper mb-4 d-flex justify-content-center align-items-center">
+              <i class="fa fa-book" style="font-size: 64px; color: #e8293b;"></i>
+            </div>
+            <h4 class="mb-3">Catalogs</h4>
+            <p class="small text-muted mb-4">Download our product catalogs and brochures</p>
+            <div class="custom-link d-flex justify-content-center">
+              <a href="#" class="text-center">
+                <i class="fa fa-arrow-right" style="font-size: 12px; color: #6c757d; border: 2px solid #6c757d; border-radius: 50%; padding: 8px; display: inline-block;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- end container -->
     </div>
-    <!-- end footer-quote -->
+  </section>
+  <!-- end media-links -->
+
+
+  <!-- footer -->
+  <footer class="footer">
+    <!-- new footer -->
     <div class="footer-contact wow fadeIn">
+      <div class="footer-quote wow fadeIn">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <img src="images/footer_log-01.svg" alt="Image">
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end container -->
+      </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <address>
+          <div class="col-md-6">
+            <address class="mb-4">
               Ekrem Demirtaş Caddesi 9, ITOB Tekeli,
               <br>
               35868 Menderes - İZMİR
             </address>
-          </div>
-          <!-- end col-4 -->
-          <div class="col-md-4">
-            <address>
+            <address class="mb-4">
               +90 (232) 254 57 27<br>
             </address>
+            <address class="mb-2">
+              <a href="#" style="text-decoration: none;">info@celiksan.com</a>
+            </address>
+
+            <address class="mb-4">
+              <a href="#" style="text-decoration: none;">export@celiksan.com</a>
+            </address>
+
           </div>
-          <!-- end col-4 -->
-          <div class="col-md-3">
+          <div class="col-md-2">
+            <h5>Navigation</h5>
             <address>
-              <a href="#">info@celiksan.com</a>
-              <a href="#">export@celiksan.com</a>
+              <a href="/" class="small" style="text-decoration: none;">Home</a>
+              <br>
+              <a href="/products" class="small" style="text-decoration: none;">Products</a>
+              <br>
+              <a href="/media" class="small" style="text-decoration: none;">Media</a>
+              <br>
+              <a href="/contact" class="small" style="text-decoration: none;">Contact</a>
+              <br>
+              <a href="/contact" class="small" style="text-decoration: none;">H&R</a>
             </address>
           </div>
-          <!-- end col-2 -->
+          <div class="col-md-2">
+            <h5>Products</h5>
+            <address>
+              <a href="" class="small" style="text-decoration: none;">Product 1</a>
+              <br>
+              <a href="" class="small" style="text-decoration: none;">Product 2</a>
+              <br>
+              <a href="" class="small" style="text-decoration: none;">Product 3</a>
+              <br>
+              <a href="" class="small" style="text-decoration: none;">Product 4</a>
+            </address>
+          </div>
+          <div class="col-md-2">
+            <h5 class="mb-3">Media</h5>
+            <address>
+              <a href="" class="small" style="text-decoration: none;">News</a>
+              <br>
+              <a href="" class="small" style="text-decoration: none;">Videos</a>
+              <br>
+              <a href="" class="small" style="text-decoration: none;">Catalog</a>
+            </address>
+          </div>
         </div>
-        <!-- end row -->
       </div>
-      <!-- end container -->
-    </div>
-    <!-- end footer-contact -->
-    <div class="footer-bottom wow fadeIn">
+
+      <div class="footer-bottom wow fadeIn">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <h5>Connect with us </h5>
+              <ul>
+                <a href="#" class="me-2 text-white my-4 mr-4">
+                  <i class="fa fa-facebook" style="font-size: 24px;"></i>
+                </a>
+
+                <a href="#" class="me-2 text-white my-4 mr-4">
+                  <i class="fa fa-instagram" style="font-size: 24px;"></i>
+                </a>
+
+                <a href="#" class="me-2 text-white my-4 mr-4">
+                  <i class="fa fa-youtube" style="font-size: 24px;"></i>
+                </a>
+              </ul>
+            </div>
+            <!-- end col-8 -->
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end container -->
+      </div>
+
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
-            <h5>Connect with us </h5>
-            <ul>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Youtube</a></li>
-            </ul>
+          <div class="col-12">
+            <hr style="border-top: 2px solid #e8293b; margin: 30px 0;">
           </div>
-          <!-- end col-8 -->
         </div>
-        <!-- end row -->
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between align-items-center">
+            <p class="mb-0">© 2025 Celiksan. All rights reserved.</p>
+            <img src="images/vahsi-bati-logo.svg" alt="Vahşi Batı Logo" style="height: 30px;">
+          </div>
+        </div>
       </div>
-      <!-- end container -->
     </div>
-    <!-- end footer-bottom -->
+    <!-- end new footer -->
   </footer>
   <!-- end footer -->
+
+  <!-- Contact Button & Menu -->
+  <div class="contact-button-wrapper" style="position: fixed; bottom: 40px; right: 50px; z-index: 999;">
+    <!-- Main Contact Button -->
+    <div class="d-flex align-items-center">
+      <span id="contactText" class="me-2"
+        style="color: #ffffff; font-weight: 500; background-color: #e8293b; padding: 6px 10px; border-radius: 4px; margin-right: 10px; font-size: 14px; cursor: pointer;">Contact</span>
+      <button id="contactBtn" class="btn rounded-circle"
+        style="width: 60px; height: 60px; background-color: #ffffff; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.3); cursor: pointer;">
+        <img src="images/cls_1-01.svg" alt="">
+      </button>
+    </div>
+
+    <!-- Contact Menu -->
+    <div id="contactMenu" class="contact-menu"
+      style="position: absolute; bottom: 80px; right: 0; background: #ffffff; border-radius: 10px; padding: 15px; box-shadow: 0 2px 15px rgba(0,0,0,0.2); display: none;">
+      <div class="d-flex flex-column gap-2" style="min-width: 200px;">
+        <!-- Call Now Button -->
+        <a href="tel:+902322545727" class="btn d-flex align-items-center gap-2" style="text-decoration: none;">
+          <i class="fa fa-phone" style="color: #e8293b; margin-right: 8px;"></i>
+          <span>Call Now</span>
+        </a>
+
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/902322545727" target="_blank" class="btn d-flex align-items-center gap-2"
+          style="text-decoration: none;">
+          <i class="fa fa-whatsapp" style="color: #25D366; margin-right: 8px;"></i>
+          <span>WhatsApp</span>
+        </a>
+
+        <!-- Route Direction Button -->
+        <a href="https://maps.google.com" target="_blank" class="btn d-flex align-items-center gap-2"
+          style="text-decoration: none;">
+          <i class="fa fa-map-marker" style="color: #e8293b; margin-right: 8px;"></i>
+          <span>Get Directions</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('contactMenu');
+      if (menu.style.display === 'none') {
+        menu.style.display = 'block';
+      } else {
+        menu.style.display = 'none';
+      }
+    }
+
+    document.getElementById('contactBtn').addEventListener('click', toggleMenu);
+    document.getElementById('contactText').addEventListener('click', toggleMenu);
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (event) {
+      const menu = document.getElementById('contactMenu');
+      const btn = document.getElementById('contactBtn');
+      const text = document.getElementById('contactText');
+      if (!btn.contains(event.target) && !menu.contains(event.target) && !text.contains(event.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+  <!-- end contact button & menu -->
 
   <audio id="hamburger-hover" src="audio/link.mp3" preload="auto"></audio>
 
@@ -368,6 +532,37 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/swiper.min.js"></script>
+  <script>
+    // Initialize swiper with autoplay
+    var swiper = new Swiper('.swiper-slider', {
+      speed: 1000,
+      autoplay: {
+        delay: 5000, // 5 seconds delay between slides
+        disableOnInteraction: false, // Continue autoplay after user interaction
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true, // Make bullets clickable
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + '</span>';
+        }
+      },
+      on: {
+        slideChange: function () {
+          // Update active bullet on slide change
+          var bullets = document.querySelectorAll('.swiper-pagination-bullet');
+          bullets.forEach(function (bullet, index) {
+            if (index === swiper.realIndex) {
+              bullet.classList.add('swiper-pagination-bullet-active');
+            } else {
+              bullet.classList.remove('swiper-pagination-bullet-active');
+            }
+          });
+        }
+      }
+    });
+  </script>
   <script src="js/tilt.jquery.js"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/odometer.min.js"></script>
