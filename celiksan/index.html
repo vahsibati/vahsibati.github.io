@@ -629,17 +629,47 @@
     // Add this script at the end of the file, before </body>
     const videos = [
       'videos/light_v_1.mp4',
-      'videos/light_v_2.mp4',
+      'videos/light_v_2.mp4', 
       'videos/light_v_1.mp4'
     ];
     let currentVideoIndex = 0;
     const videoElement = document.getElementById('productVideo');
     const counterElement = document.getElementById('videoCounter');
 
+    function fadeOut(element, callback) {
+      let opacity = 1;
+      const timer = setInterval(() => {
+        if (opacity <= 0.1) {
+          clearInterval(timer);
+          element.style.opacity = 0;
+          callback();
+        }
+        element.style.opacity = opacity;
+        opacity -= 0.1;
+      }, 50);
+    }
+
+    function fadeIn(element) {
+      let opacity = 0;
+      element.style.opacity = opacity;
+      const timer = setInterval(() => {
+        if (opacity >= 1) {
+          clearInterval(timer);
+        }
+        element.style.opacity = opacity;
+        opacity += 0.1;
+      }, 50);
+    }
+
     function updateVideo() {
-      videoElement.src = videos[currentVideoIndex];
-      videoElement.play();
-      counterElement.textContent = `${currentVideoIndex + 1}/${videos.length}`;
+      fadeOut(videoElement, () => {
+        videoElement.src = videos[currentVideoIndex];
+        videoElement.play();
+        fadeIn(videoElement);
+        if (counterElement) {
+          counterElement.textContent = `${currentVideoIndex + 1}/${videos.length}`;
+        }
+      });
     }
 
     function nextVideo() {
@@ -648,9 +678,14 @@
     }
 
     function prevVideo() {
-      currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+      currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length; 
       updateVideo();
     }
+
+    // Auto change video every 4 seconds
+    setInterval(() => {
+      nextVideo();
+    }, 6000);
   </script>
 </body>
 
