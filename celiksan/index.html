@@ -341,68 +341,27 @@
       <div class="row">
         <div class="col-12 wow fadeIn">
           <h6>Fire Truck Equipments</h6>
-          <h2 data-text="products">Some of Our Products</h2>
+          <h2 data-text="">Some of Our Products</h2>
+          <div class="video-carousel position-relative">
+            <!-- Video container -->
+            <div class="video-container">
+              <video src="videos/light_v_1.mp4" width="100%" height="auto" muted autoplay id="productVideo"></video>
+            </div>
+            
+            <!-- Controls -->
+            <div class="d-flex justify-content-center align-items-center mt-4">
+              <button class="btn btn-link me-5" onclick="prevVideo()" style="border: 2px solid #e8293b; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                <i class="fa fa-chevron-left" style="font-size: 24px; color: #e8293b;"></i>
+              </button>
+              <a href="products.html" style="color: #e8293b; text-decoration: none; margin: 0 30px;">View All Products</a>
+              <button class="btn btn-link ms-5" onclick="nextVideo()" style="border: 2px solid #e8293b; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                <i class="fa fa-chevron-right" style="font-size: 24px; color: #e8293b;"></i>
+              </button>
+            </div>
+          </div>
         </div>
-        <!-- end col-12 -->
-        <div class="col-12">
-          <div class="project-box wow fadeIn" data-bg="#fff">
-            <figure> <a href="images/agora.jpg" data-fancybox><img src="images/agora.jpg" alt="Image"></a></figure>
-            <div class="content-box">
-              <div class="inner"> <small>CN 10-400</small>
-                <h3><span>Agora</span>Series</h3>
-                <div class="custom-link"> <a href="works-single.html">
-                    <div class="lines"> <span></span> <span></span> </div>
-                    <!-- end lines -->
-                    <b>LEARN MORE</b>
-                  </a> </div>
-                <!-- end custom-link -->
-              </div>
-              <!-- end inner -->
-            </div>
-            <!-- end content-box -->
-          </div>
-          <!-- end project-box -->
-          <div class="project-box wow fadeIn" data-bg="#fff">
-            <figure> <a href="images/bosphorus.jpg" data-fancybox><img src="images/bosphorus.jpg" alt="Image"></a>
-            </figure>
-            <div class="content-box">
-              <div class="inner"> <small>CN 10-300 | CNH 10-300 / 40-250</small>
-                <h3><span>Bosphorus</span>Series</h3>
-                <div class="custom-link"> <a href="works-single.html">
-                    <div class="lines"> <span></span> <span></span> </div>
-                    <!-- end lines -->
-                    <b>LEARN MORE</b>
-                  </a> </div>
-                <!-- end custom-link -->
-              </div>
-              <!-- end inner -->
-            </div>
-            <!-- end content-box -->
-          </div>
-          <!-- end project-box -->
-          <div class="project-box wow fadeIn" data-bg="#fff">
-            <figure> <a href="images/toma.jpg" data-fancybox><img src="images/toma.jpg" alt="Image"></a></figure>
-            <div class="content-box">
-              <div class="inner"> <small>CNT 10-3000 | CNT 10-2000</small>
-                <h3><span>Toma</span>Series</h3>
-                <div class="custom-link"> <a href="works-single.html">
-                    <div class="lines"> <span></span> <span></span> </div>
-                    <!-- end lines -->
-                    <b>LEARN MORE</b>
-                  </a> </div>
-                <!-- end custom-link -->
-              </div>
-              <!-- end inner -->
-            </div>
-            <!-- end content-box -->
-          </div>
-          <!-- end project-box -->
-        </div>
-        <!-- end col-12 -->
       </div>
-      <!-- end row -->
     </div>
-    <!-- end container -->
   </section>
   <!-- end works -->
 
@@ -665,6 +624,34 @@
   <script src="js/app.js"></script>
   <script src="js/scripts.js"></script>
   <!-- end js files -->
+
+  <script>
+    // Add this script at the end of the file, before </body>
+    const videos = [
+      'videos/light_v_1.mp4',
+      'videos/light_v_2.mp4',
+      'videos/light_v_1.mp4'
+    ];
+    let currentVideoIndex = 0;
+    const videoElement = document.getElementById('productVideo');
+    const counterElement = document.getElementById('videoCounter');
+
+    function updateVideo() {
+      videoElement.src = videos[currentVideoIndex];
+      videoElement.play();
+      counterElement.textContent = `${currentVideoIndex + 1}/${videos.length}`;
+    }
+
+    function nextVideo() {
+      currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+      updateVideo();
+    }
+
+    function prevVideo() {
+      currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+      updateVideo();
+    }
+  </script>
 </body>
 
 </html>

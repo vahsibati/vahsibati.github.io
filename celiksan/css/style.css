@@ -1592,7 +1592,7 @@ s .process span:before {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 150px 0;
+  padding-top: 150px;
   transition-delay: 0s !important;
   transition: background 0.4s;
 }
