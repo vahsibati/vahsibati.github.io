@@ -193,7 +193,7 @@ section {
   height: 100%;
   position: absolute;
   bottom: 0;
-  background: #000;
+  background: #403b3c;
   z-index: 2;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -285,7 +285,7 @@ section {
   height: 0;
   position: absolute;
   bottom: 0;
-  background: #000;
+  background: #403b3c;
   z-index: 2;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -2363,7 +2363,7 @@ s .process span:before {
   flex-direction: column;
   padding-top: 100px;
   
-  background: #0e0e0e;
+  background: #403b3c;
   color: #fff;
 }
 .footer .footer-quote {
