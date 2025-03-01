@@ -1388,7 +1388,7 @@ header .sound .equalizer .holder {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding-top: 150px;
+  padding-top: 50px;
 }
 .intro h6 {
   display: block;
@@ -1592,7 +1592,7 @@ s .process span:before {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding-top: 150px;
+  padding-top: 100px;
   transition-delay: 0s !important;
   transition: background 0.4s;
 }
