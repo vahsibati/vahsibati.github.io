@@ -1,0 +1,277 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?1eb0796c65fb6f39520c2c016460921f") format("truetype"),
+url("./flaticon.woff?1eb0796c65fb6f39520c2c016460921f") format("woff"),
+url("./flaticon.woff2?1eb0796c65fb6f39520c2c016460921f") format("woff2"),
+url("./flaticon.eot?1eb0796c65fb6f39520c2c016460921f#iefix") format("embedded-opentype"),
+url("./flaticon.svg?1eb0796c65fb6f39520c2c016460921f#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "map": "\f101",
+    "calendar": "\f102",
+    "clock": "\f103",
+    "dial-pad": "\f104",
+    "add-user": "\f105",
+    "magnifying-glass": "\f106",
+    "laboratory": "\f107",
+    "right-arrow": "\f108",
+    "left-arrow": "\f109",
+    "biochemistry": "\f10a",
+    "microorganism": "\f10b",
+    "skin": "\f10c",
+    "sprout": "\f10d",
+    "green-earth": "\f10e",
+    "medicine": "\f10f",
+    "bread": "\f110",
+    "automobile": "\f111",
+    "medical-report": "\f112",
+    "checked-data": "\f113",
+    "medical-checkup": "\f114",
+    "rating": "\f115",
+    "atom": "\f116",
+    "lab": "\f117",
+    "zoom-in": "\f118",
+    "premium": "\f119",
+    "phone-call": "\f11a",
+    "atom-1": "\f11b",
+    "play-store": "\f11c",
+    "apple": "\f11d",
+    "down-arrow": "\f11e",
+    "up-arrow": "\f11f",
+    "headphones": "\f120",
+    "add-to-cart": "\f121",
+    "blood-test": "\f122",
+    "down-arrow-1": "\f123",
+    "laboratory-1": "\f124",
+    "test-tube": "\f125",
+    "sharing": "\f126",
+    "blood-sample": "\f127",
+    "microscope": "\f128",
+    "clipboard": "\f129",
+    "cells": "\f12a",
+    "pin": "\f12b",
+    "newsletter": "\f12c",
+    "calendar-1": "\f12d",
+    "quote": "\f12e",
+    "quote-1": "\f12f",
+    "check-mark": "\f130",
+    "play": "\f131",
+    "heart-shape-outline": "\f132",
+    "shopping-bag": "\f133",
+    "expand-button": "\f134",
+    "keyboard-right-arrow-button": "\f135",
+    "down-chevron": "\f136",
+    "quote-2": "\f137",
+    "question": "\f138",
+    "phone-call-1": "\f139",
+    "message": "\f13a",
+    "ambition": "\f13b",
+    "solutions": "\f13c",
+    "pdf": "\f13d",
+    "estimation": "\f13e",
+    "button": "\f13f",
+);
+
+.flaticon-map:before {
+    content: map-get($flaticon-map, "map");
+}
+.flaticon-calendar:before {
+    content: map-get($flaticon-map, "calendar");
+}
+.flaticon-clock:before {
+    content: map-get($flaticon-map, "clock");
+}
+.flaticon-dial-pad:before {
+    content: map-get($flaticon-map, "dial-pad");
+}
+.flaticon-add-user:before {
+    content: map-get($flaticon-map, "add-user");
+}
+.flaticon-magnifying-glass:before {
+    content: map-get($flaticon-map, "magnifying-glass");
+}
+.flaticon-laboratory:before {
+    content: map-get($flaticon-map, "laboratory");
+}
+.flaticon-right-arrow:before {
+    content: map-get($flaticon-map, "right-arrow");
+}
+.flaticon-left-arrow:before {
+    content: map-get($flaticon-map, "left-arrow");
+}
+.flaticon-biochemistry:before {
+    content: map-get($flaticon-map, "biochemistry");
+}
+.flaticon-microorganism:before {
+    content: map-get($flaticon-map, "microorganism");
+}
+.flaticon-skin:before {
+    content: map-get($flaticon-map, "skin");
+}
+.flaticon-sprout:before {
+    content: map-get($flaticon-map, "sprout");
+}
+.flaticon-green-earth:before {
+    content: map-get($flaticon-map, "green-earth");
+}
+.flaticon-medicine:before {
+    content: map-get($flaticon-map, "medicine");
+}
+.flaticon-bread:before {
+    content: map-get($flaticon-map, "bread");
+}
+.flaticon-automobile:before {
+    content: map-get($flaticon-map, "automobile");
+}
+.flaticon-medical-report:before {
+    content: map-get($flaticon-map, "medical-report");
+}
+.flaticon-checked-data:before {
+    content: map-get($flaticon-map, "checked-data");
+}
+.flaticon-medical-checkup:before {
+    content: map-get($flaticon-map, "medical-checkup");
+}
+.flaticon-rating:before {
+    content: map-get($flaticon-map, "rating");
+}
+.flaticon-atom:before {
+    content: map-get($flaticon-map, "atom");
+}
+.flaticon-lab:before {
+    content: map-get($flaticon-map, "lab");
+}
+.flaticon-zoom-in:before {
+    content: map-get($flaticon-map, "zoom-in");
+}
+.flaticon-premium:before {
+    content: map-get($flaticon-map, "premium");
+}
+.flaticon-phone-call:before {
+    content: map-get($flaticon-map, "phone-call");
+}
+.flaticon-atom-1:before {
+    content: map-get($flaticon-map, "atom-1");
+}
+.flaticon-play-store:before {
+    content: map-get($flaticon-map, "play-store");
+}
+.flaticon-apple:before {
+    content: map-get($flaticon-map, "apple");
+}
+.flaticon-down-arrow:before {
+    content: map-get($flaticon-map, "down-arrow");
+}
+.flaticon-up-arrow:before {
+    content: map-get($flaticon-map, "up-arrow");
+}
+.flaticon-headphones:before {
+    content: map-get($flaticon-map, "headphones");
+}
+.flaticon-add-to-cart:before {
+    content: map-get($flaticon-map, "add-to-cart");
+}
+.flaticon-blood-test:before {
+    content: map-get($flaticon-map, "blood-test");
+}
+.flaticon-down-arrow-1:before {
+    content: map-get($flaticon-map, "down-arrow-1");
+}
+.flaticon-laboratory-1:before {
+    content: map-get($flaticon-map, "laboratory-1");
+}
+.flaticon-test-tube:before {
+    content: map-get($flaticon-map, "test-tube");
+}
+.flaticon-sharing:before {
+    content: map-get($flaticon-map, "sharing");
+}
+.flaticon-blood-sample:before {
+    content: map-get($flaticon-map, "blood-sample");
+}
+.flaticon-microscope:before {
+    content: map-get($flaticon-map, "microscope");
+}
+.flaticon-clipboard:before {
+    content: map-get($flaticon-map, "clipboard");
+}
+.flaticon-cells:before {
+    content: map-get($flaticon-map, "cells");
+}
+.flaticon-pin:before {
+    content: map-get($flaticon-map, "pin");
+}
+.flaticon-newsletter:before {
+    content: map-get($flaticon-map, "newsletter");
+}
+.flaticon-calendar-1:before {
+    content: map-get($flaticon-map, "calendar-1");
+}
+.flaticon-quote:before {
+    content: map-get($flaticon-map, "quote");
+}
+.flaticon-quote-1:before {
+    content: map-get($flaticon-map, "quote-1");
+}
+.flaticon-check-mark:before {
+    content: map-get($flaticon-map, "check-mark");
+}
+.flaticon-play:before {
+    content: map-get($flaticon-map, "play");
+}
+.flaticon-heart-shape-outline:before {
+    content: map-get($flaticon-map, "heart-shape-outline");
+}
+.flaticon-shopping-bag:before {
+    content: map-get($flaticon-map, "shopping-bag");
+}
+.flaticon-expand-button:before {
+    content: map-get($flaticon-map, "expand-button");
+}
+.flaticon-keyboard-right-arrow-button:before {
+    content: map-get($flaticon-map, "keyboard-right-arrow-button");
+}
+.flaticon-down-chevron:before {
+    content: map-get($flaticon-map, "down-chevron");
+}
+.flaticon-quote-2:before {
+    content: map-get($flaticon-map, "quote-2");
+}
+.flaticon-question:before {
+    content: map-get($flaticon-map, "question");
+}
+.flaticon-phone-call-1:before {
+    content: map-get($flaticon-map, "phone-call-1");
+}
+.flaticon-message:before {
+    content: map-get($flaticon-map, "message");
+}
+.flaticon-ambition:before {
+    content: map-get($flaticon-map, "ambition");
+}
+.flaticon-solutions:before {
+    content: map-get($flaticon-map, "solutions");
+}
+.flaticon-pdf:before {
+    content: map-get($flaticon-map, "pdf");
+}
+.flaticon-estimation:before {
+    content: map-get($flaticon-map, "estimation");
+}
+.flaticon-button:before {
+    content: map-get($flaticon-map, "button");
+}
