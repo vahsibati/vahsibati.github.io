@@ -35,11 +35,11 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close" id="closeOffcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <ul class="list-unstyled">
-                <li><a href="#" class="text-decoration-none font-weight-bold">Ana Sayfa</a></li>
+                <li><a href="index.html" class="text-decoration-none font-weight-bold">Ana Sayfa</a></li>
                 <li><a href="#" class="text-decoration-none font-weight-bold">Hakkımızda</a></li>
                 <li><a href="#" class="text-decoration-none font-weight-bold">Hizmetler</a></li>
                 <li><a href="#" class="text-decoration-none font-weight-bold">İletişim</a></li>
@@ -260,6 +260,11 @@
             // Add click event for menu button
             document.querySelector('.navbar-toggler').addEventListener('click', function() {
                 offcanvas.show();
+            });
+
+            // Add click event for close button
+            document.getElementById('closeOffcanvas').addEventListener('click', function() {
+                offcanvas.hide();
             });
         });
     </script>
