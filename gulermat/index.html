@@ -32,6 +32,21 @@
     </div>
     <!-- navbar end -->
 
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled">
+                <li><a href="#" class="text-decoration-none font-weight-bold">Ana Sayfa</a></li>
+                <li><a href="#" class="text-decoration-none font-weight-bold">Hakkımızda</a></li>
+                <li><a href="#" class="text-decoration-none font-weight-bold">Hizmetler</a></li>
+                <li><a href="#" class="text-decoration-none font-weight-bold">İletişim</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Desktop Carousel -->
     <div id="desktopCarousel" class="carousel slide carousel-fade d-none d-md-block" data-mdb-ride="carousel"
         data-mdb-carousel-init style="top: 0; width: 100%;">
@@ -94,7 +109,7 @@
                 <h4 class="mb-4"><strong>BİZİ TANIYIN!</strong></h4>
                 <h2 class="text-black">Ambalajda kalite,</h2>
                 <h2 class="">baskıda mükemmellik!</h2>
-                <p>
+                <p style="text-align: justify;">
                     Üstün teknoloji, hassas işçilik ve kusursuz renk kalitesiyle
                     baskılarımız fark yaratır. Gülermat Ambalaj olarak, her detayı
                     özenle işliyor, karton ambalajlarınıza estetik ve dayanıklılığı bir
@@ -235,6 +250,18 @@
                 lastScroll = scrollTop <= 0 ? 0 : scrollTop;
             });
         })();
+
+        // Initialize MDB components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize offcanvas
+            const offcanvasElement = document.getElementById('offcanvasMenu');
+            const offcanvas = new mdb.Offcanvas(offcanvasElement);
+
+            // Add click event for menu button
+            document.querySelector('.navbar-toggler').addEventListener('click', function() {
+                offcanvas.show();
+            });
+        });
     </script>
     <script src="js/mdb.umd.min.js"></script>
     <script src="js/mdb.es.min.js"></script>
