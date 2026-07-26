@@ -923,6 +923,12 @@ body.theme-boy {
     align-items: center;
 }
 
+#svg-overlay-container,
+#svg-overlay-container * {
+    pointer-events: none !important;
+    user-select: none !important;
+}
+
 #freehandCanvas {
     background-color: #ffffff;
     max-width: 100%;
