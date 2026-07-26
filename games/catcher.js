@@ -63,11 +63,7 @@ class CatcherGame {
         this.container.innerHTML = `
             <div class="catcher-game-container">
                 <canvas id="catcherCanvas" width="400" height="400"></canvas>
-                <div class="catcher-touch-controls">
-                    <button class="catcher-btn" id="catcher-left-btn">◀ Sol</button>
-                    <button class="catcher-btn" id="catcher-right-btn">Sağ ▶</button>
-                </div>
-                <div class="catcher-instructions">Farenle/parmağınla sürükle veya butonlara / ok tuşlarına bas!</div>
+                <div class="catcher-instructions">Farenle/parmağınla sürükleyerek veya ok tuşlarıyla çekirdekleri yakala!</div>
             </div>
         `;
         this.canvas = document.getElementById('catcherCanvas');
@@ -129,23 +125,6 @@ class CatcherGame {
         };
         this.canvas.addEventListener('touchmove', this.touchMoveHandler, { passive: false });
         this.canvas.addEventListener('touchstart', this.touchMoveHandler, { passive: false });
-
-        // Touch Control Buttons
-        const leftBtn = document.getElementById('catcher-left-btn');
-        const rightBtn = document.getElementById('catcher-right-btn');
-
-        if (leftBtn) {
-            leftBtn.addEventListener('click', () => {
-                this.catcherX = Math.max(0, this.catcherX - 35);
-                soundEngine.play('click');
-            });
-        }
-        if (rightBtn) {
-            rightBtn.addEventListener('click', () => {
-                this.catcherX = Math.min(this.canvas.width - this.catcherWidth, this.catcherX + 35);
-                soundEngine.play('click');
-            });
-        }
 
         // Keyboard Controls (Arrow Keys)
         this.keyDownHandler = (e) => {
