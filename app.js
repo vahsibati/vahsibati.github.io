@@ -8,7 +8,7 @@ const state = {
 // SVG Assets for dynamic injection
 const AVATAR_SVGS = {
     girl: `
-    <svg class="avatar-svg" viewBox="0 0 100 100">
+    <svg xmlns="http://www.w3.org/2000/svg" class="avatar-svg" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="30" fill="#FFE0B2" />
         <circle cx="18" cy="30" r="12" fill="#FFB74D" />
         <circle cx="82" cy="30" r="12" fill="#FFB74D" />
@@ -27,7 +27,7 @@ const AVATAR_SVGS = {
         <path d="M 32,94 Q 50,84 68,94" stroke="#FFFFFF" stroke-width="2.5" fill="none" />
     </svg>`,
     boy: `
-    <svg class="avatar-svg" viewBox="0 0 100 100">
+    <svg xmlns="http://www.w3.org/2000/svg" class="avatar-svg" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="30" fill="#FFE0B2" />
         <path d="M 20,40 Q 50,15 80,40 Q 50,25 20,40" fill="#8D6E63" />
         <path d="M 23,30 Q 35,10 50,22 Q 65,10 77,30 Z" fill="#8D6E63" />
@@ -215,7 +215,6 @@ function launchGame(gameId) {
         'memory': 'Hafıza Kartı Oyunu',
         'snake': 'Renkli Yılan Oyunu',
         'catcher': 'Kahve Çekirdeği Yakala',
-        'cup-designer': 'Karton Bardak Tasarla',
         'maze': 'Süt & Kahve Labirenti',
         'tower': 'Bisküvi Kulesi',
         'coloring': 'Boyama Kitabı'

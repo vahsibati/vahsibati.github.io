@@ -48,7 +48,6 @@ class MemoryGame {
                                         <circle cx="50" cy="50" r="45" fill="#4a157d" stroke="#ffab40" stroke-width="4"/>
                                         <path d="M 35,45 L 65,45 L 60,75 C 60,80 40,80 40,75 Z" fill="#ffffff" />
                                         <path d="M 62,50 C 70,50 70,65 62,65" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round"/>
-                                        <text x="50" y="62" font-size="10" font-family="'Fredoka', sans-serif" fill="#4a157d" font-weight="bold" text-anchor="middle">LUUQ</text>
                                         <path d="M 42,38 Q 45,30 42,25" stroke="#ffab40" stroke-width="3" fill="none" stroke-linecap="round"/>
                                         <path d="M 50,38 Q 53,30 50,25" stroke="#ffab40" stroke-width="3" fill="none" stroke-linecap="round"/>
                                         <path d="M 58,38 Q 61,30 58,25" stroke="#ffab40" stroke-width="3" fill="none" stroke-linecap="round"/>

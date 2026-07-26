@@ -773,6 +773,34 @@ body {
     cursor: none; /* Hide cursor on the game canvas */
 }
 
+.catcher-touch-controls {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+}
+
+.catcher-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 12px 0;
+    font-family: var(--primary-font);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.catcher-btn:active {
+    transform: scale(0.92);
+    background: var(--bg-accent);
+    border-color: var(--text-light);
+}
+
 .catcher-instructions {
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.8);
@@ -786,214 +814,6 @@ body {
     #catcherCanvas {
         border-width: 4px;
         border-radius: 16px;
-    }
-}
-
-/* ==========================================
-   GAME 4: KARTON BARDAK TASARLAMA GAME STYLES
-   ========================================== */
-.designer-game-layout {
-    display: flex;
-    gap: 30px;
-    width: 100%;
-    align-items: flex-start;
-}
-
-.canvas-area {
-    flex: 1.2;
-    display: flex;
-    justify-content: center;
-}
-
-#designerCanvas {
-    background-color: #2c104e;
-    border: 6px solid var(--bg-accent);
-    border-radius: 24px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    max-width: 100%;
-}
-
-.tools-area {
-    flex: 1.5;
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    border-radius: 24px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-}
-
-.tool-section {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.tool-section h4 {
-    font-size: 1.1rem;
-    color: var(--bg-accent);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-#cup-name-input {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 10px 15px;
-    color: var(--text-light);
-    font-family: var(--primary-font);
-    font-size: 1.1rem;
-    outline: none;
-    transition: all 0.2s ease;
-}
-
-#cup-name-input:focus {
-    border-color: var(--bg-accent);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.color-pickers {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.color-pickers div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    flex: 1;
-    min-width: 60px;
-}
-
-.color-pickers label {
-    font-size: 0.85rem;
-    font-family: var(--secondary-font);
-}
-
-.color-pickers input[type="color"] {
-    -webkit-appearance: none;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    background: none;
-}
-
-.color-pickers input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
-}
-
-.color-pickers input[type="color"]::-webkit-color-swatch {
-    border: 3px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-}
-
-.sticker-palette {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-}
-
-.sticker-add-btn {
-    background: rgba(255, 255, 255, 0.12);
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    font-size: 1.8rem;
-    height: 48px;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sticker-add-btn:hover {
-    transform: scale(1.15);
-    background: rgba(255, 255, 255, 0.2);
-    border-color: var(--bg-accent);
-}
-
-.sticker-ctrl-btns {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.ctrl-btn-small {
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--text-light);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 8px 0;
-    font-family: var(--primary-font);
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.ctrl-btn-small:hover {
-    background: var(--bg-accent);
-    border-color: white;
-}
-
-.btn-delete {
-    background: #ff5252 !important;
-}
-
-.btn-delete:hover {
-    background: #ff1744 !important;
-}
-
-.designer-actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.play-btn-outline {
-    background: transparent;
-    color: var(--text-light);
-    border: 3px solid var(--text-light);
-    padding: 10px 24px;
-    font-family: var(--primary-font);
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.play-btn-outline:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: scale(1.03);
-}
-
-@media (max-width: 900px) {
-    .designer-game-layout {
-        flex-direction: column;
-        align-items: center;
-    }
-    .canvas-area, .tools-area {
-        width: 100%;
-    }
-    #designerCanvas {
-        border-width: 4px;
-        border-radius: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .sticker-palette {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .sticker-ctrl-btns {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 

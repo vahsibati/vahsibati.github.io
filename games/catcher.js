@@ -8,9 +8,10 @@ class CatcherGame {
         this.isGameOver = false;
         
         // Catcher positioning
-        this.catcherX = 175; // Center of 400px width canvas
+        this.catcherX = 155; // Center of 400px width canvas
         this.catcherWidth = 90;
-        this.catcherHeight = 85;
+        this.catcherHeight = 80;
+        this.catcherSpeed = 12;
         
         this.beans = [];
         this.particles = [];
@@ -19,50 +20,27 @@ class CatcherGame {
         this.gameInterval = null;
         this.timerInterval = null;
         
-        // Character SVGs & Cup Catcher
+        // Character SVG Image
         this.charImg = new Image();
-        this.catcherCupImg = new Image();
-        this.beanImg = new Image();
-        this.goldenBeanImg = new Image();
-        
-        this.initImages();
+        this.isCharLoaded = false;
+        this.initCharImage();
     }
 
-    initImages() {
+    initCharImage() {
         const charType = state.selectedCharacter || 'girl';
         const rawCharSVG = AVATAR_SVGS[charType];
         
-        const rawCupSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80">
-            <path d="M 10,10 L 90,10 L 80,65 C 80,72 20,72 20,65 Z" fill="#ffab40" stroke="#e65100" stroke-width="4"/>
-            <path d="M 88,25 C 98,25 98,45 88,45" stroke="#ffab40" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <text x="50" y="42" font-size="10" font-family="'Fredoka', sans-serif" fill="#e65100" font-weight="bold" text-anchor="middle">LUUQ</text>
-        </svg>`;
-
-        const rawBeanSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <ellipse cx="50" cy="50" rx="32" ry="42" fill="#5c3826" stroke="#331e13" stroke-width="4" transform="rotate(-15, 50, 50)"/>
-            <path d="M 50,10 Q 56,32 44,50 Q 56,68 50,90" stroke="#331e13" stroke-width="4.5" fill="none" stroke-linecap="round" transform="rotate(-15, 50, 50)"/>
-            <ellipse cx="36" cy="40" rx="5" ry="12" fill="#7a4b33" transform="rotate(-25, 36, 40)"/>
-        </svg>`;
-
-        const rawGoldenBeanSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <ellipse cx="50" cy="50" rx="32" ry="42" fill="#ffd700" stroke="#ca8a04" stroke-width="4" transform="rotate(-15, 50, 50)"/>
-            <path d="M 50,10 Q 56,32 44,50 Q 56,68 50,90" stroke="#ca8a04" stroke-width="4.5" fill="none" stroke-linecap="round" transform="rotate(-15, 50, 50)"/>
-            <ellipse cx="36" cy="40" rx="5" ry="12" fill="#fff9a6" transform="rotate(-25, 36, 40)"/>
-        </svg>`;
-
+        this.charImg.onload = () => {
+            this.isCharLoaded = true;
+        };
         this.charImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawCharSVG);
-        this.catcherCupImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawCupSVG);
-        this.beanImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawBeanSVG);
-        this.goldenBeanImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawGoldenBeanSVG);
     }
 
     start() {
         this.score = 0;
         this.timeLeft = 45;
         this.isGameOver = false;
+        this.catcherX = 155;
         this.beans = [];
         this.particles = [];
         this.floatingTexts = [];
@@ -74,8 +52,8 @@ class CatcherGame {
         if (this.gameInterval) clearInterval(this.gameInterval);
         if (this.timerInterval) clearInterval(this.timerInterval);
 
-        // Spawn bean every 800ms
-        this.gameInterval = setInterval(() => this.spawnBean(), 800);
+        // Spawn bean every 700ms
+        this.gameInterval = setInterval(() => this.spawnBean(), 700);
         this.timerInterval = setInterval(() => this.tickTimer(), 1000);
 
         this.drawLoop();
@@ -85,7 +63,11 @@ class CatcherGame {
         this.container.innerHTML = `
             <div class="catcher-game-container">
                 <canvas id="catcherCanvas" width="400" height="400"></canvas>
-                <div class="catcher-instructions">Sağa sola hareket etmek için parmağınla sürükle veya fareyi oynat!</div>
+                <div class="catcher-touch-controls">
+                    <button class="catcher-btn" id="catcher-left-btn">◀ Sol</button>
+                    <button class="catcher-btn" id="catcher-right-btn">Sağ ▶</button>
+                </div>
+                <div class="catcher-instructions">Farenle/parmağınla sürükle veya butonlara / ok tuşlarına bas!</div>
             </div>
         `;
         this.canvas = document.getElementById('catcherCanvas');
@@ -105,17 +87,17 @@ class CatcherGame {
     spawnBean() {
         if (this.isGameOver) return;
         
-        const isGolden = Math.random() < 0.15; // 15% chance of golden bean
-        const size = Math.random() * 10 + 30; // 30px to 40px - BIG AND VERY VISIBLE
+        const isGolden = Math.random() < 0.2; // 20% chance of golden bean
+        const size = Math.random() * 8 + 34; // 34px to 42px - LARGE & VERY CLEAR
         this.beans.push({
-            x: Math.random() * (this.canvas.width - size),
-            y: -50,
+            x: Math.random() * (this.canvas.width - size - 20) + 10,
+            y: -40,
             width: size,
-            height: size,
-            speed: Math.random() * 2 + 3,
+            height: size * 1.2, // Slightly elongated oval
+            speed: Math.random() * 2 + 3.5,
             isGolden: isGolden,
             rotation: Math.random() * Math.PI * 2,
-            rotSpeed: (Math.random() - 0.5) * 0.05
+            rotSpeed: (Math.random() - 0.5) * 0.08
         });
     }
 
@@ -129,29 +111,51 @@ class CatcherGame {
     }
 
     bindEvents() {
-        const handleMove = (clientX) => {
+        const moveCatcherTo = (clientX) => {
             const rect = this.canvas.getBoundingClientRect();
             const scaleX = this.canvas.width / rect.width;
             const x = (clientX - rect.left) * scaleX;
-            // Center catcher on X
             this.catcherX = Math.max(0, Math.min(this.canvas.width - this.catcherWidth, x - this.catcherWidth / 2));
         };
 
         // Mouse Move
-        this.mouseMoveHandler = (e) => {
-            handleMove(e.clientX);
-        };
+        this.mouseMoveHandler = (e) => moveCatcherTo(e.clientX);
         this.canvas.addEventListener('mousemove', this.mouseMoveHandler);
 
         // Touch Move
         this.touchMoveHandler = (e) => {
-            if (e.touches && e.touches[0]) {
-                handleMove(e.touches[0].clientX);
-            }
+            if (e.touches && e.touches[0]) moveCatcherTo(e.touches[0].clientX);
             e.preventDefault();
         };
         this.canvas.addEventListener('touchmove', this.touchMoveHandler, { passive: false });
         this.canvas.addEventListener('touchstart', this.touchMoveHandler, { passive: false });
+
+        // Touch Control Buttons
+        const leftBtn = document.getElementById('catcher-left-btn');
+        const rightBtn = document.getElementById('catcher-right-btn');
+
+        if (leftBtn) {
+            leftBtn.addEventListener('click', () => {
+                this.catcherX = Math.max(0, this.catcherX - 35);
+                soundEngine.play('click');
+            });
+        }
+        if (rightBtn) {
+            rightBtn.addEventListener('click', () => {
+                this.catcherX = Math.min(this.canvas.width - this.catcherWidth, this.catcherX + 35);
+                soundEngine.play('click');
+            });
+        }
+
+        // Keyboard Controls (Arrow Keys)
+        this.keyDownHandler = (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+                this.catcherX = Math.max(0, this.catcherX - 25);
+            } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+                this.catcherX = Math.min(this.canvas.width - this.catcherWidth, this.catcherX + 25);
+            }
+        };
+        window.addEventListener('keydown', this.keyDownHandler);
     }
 
     drawLoop() {
@@ -161,23 +165,35 @@ class CatcherGame {
         this.ctx.fillStyle = '#2c104e';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Draw Catcher (Character + Wide Cup on head)
+        // Draw Catcher (Character avatar + LUUQ Cup on top)
         const charY = this.canvas.height - this.catcherHeight;
         
-        // Character Body
-        this.ctx.drawImage(this.charImg, this.catcherX + 15, charY + 25, 60, 60);
-        // Catching Cup (held above or on head)
-        this.ctx.drawImage(this.catcherCupImg, this.catcherX, charY - 5, this.catcherWidth, 40);
+        // Character Body/Avatar
+        if (this.isCharLoaded) {
+            this.ctx.drawImage(this.charImg, this.catcherX + 15, charY + 25, 60, 60);
+        } else {
+            // Native fallback head
+            this.ctx.fillStyle = '#ffe0b2';
+            this.ctx.beginPath();
+            this.ctx.arc(this.catcherX + 45, charY + 50, 25, 0, Math.PI * 2);
+            this.ctx.fill();
+        }
 
-        // Move and draw Beans
+        // Catching Cup (held on top of head)
+        this.drawCup(this.catcherX, charY - 5, this.catcherWidth, 35);
+
+        // Move and draw Coffee Beans
         this.beans.forEach((bean, idx) => {
             bean.y += bean.speed;
             bean.rotation += bean.rotSpeed;
 
-            // Collision check (bean hits top edge of catcher cup)
+            // Collision check (Hits cup rim)
             const cupTop = charY - 5;
-            const isCollidingX = (bean.x + bean.width / 2) >= this.catcherX && (bean.x + bean.width / 2) <= (this.catcherX + this.catcherWidth);
-            const isCollidingY = (bean.y + bean.height) >= cupTop && (bean.y + bean.height) <= (cupTop + 25);
+            const beanBottom = bean.y + bean.height / 2;
+            const beanCenterX = bean.x;
+
+            const isCollidingX = beanCenterX >= (this.catcherX - 10) && beanCenterX <= (this.catcherX + this.catcherWidth + 10);
+            const isCollidingY = beanBottom >= cupTop && (beanBottom - bean.speed) <= (cupTop + 25);
 
             if (isCollidingX && isCollidingY) {
                 // Catch!
@@ -185,40 +201,31 @@ class CatcherGame {
                 this.score += points;
                 this.updateStatus();
                 
-                soundEngine.play('drop'); // catching sound
+                soundEngine.play('drop');
 
-                // Create explosion particles (coffee brown or golden yellow)
-                const px = bean.x + bean.width / 2;
-                const py = bean.y + bean.height / 2;
-                this.createExplosion(px, py, bean.isGolden);
+                // Explosion particles
+                this.createExplosion(bean.x, bean.y, bean.isGolden);
 
                 // Floating Text
                 this.floatingTexts.push({
                     text: `+${points}`,
-                    x: px,
-                    y: py,
+                    x: bean.x,
+                    y: bean.y,
                     alpha: 1.0,
                     yOffset: 0,
                     color: bean.isGolden ? '#ffd700' : '#ffab40'
                 });
 
-                // Remove bean
                 this.beans.splice(idx, 1);
             } 
-            // Miss check
-            else if (bean.y > this.canvas.height) {
-                // Particle splash on floor
-                this.createExplosion(bean.x + bean.width / 2, this.canvas.height - 5, false, 5);
+            // Miss check (hits floor)
+            else if (bean.y - bean.height / 2 > this.canvas.height) {
+                this.createExplosion(bean.x, this.canvas.height - 5, false, 5);
                 this.beans.splice(idx, 1);
             } 
-            // Draw bean
+            // Draw bean natively
             else {
-                this.ctx.save();
-                this.ctx.translate(bean.x + bean.width / 2, bean.y + bean.height / 2);
-                this.ctx.rotate(bean.rotation);
-                const activeImg = bean.isGolden ? this.goldenBeanImg : this.beanImg;
-                this.ctx.drawImage(activeImg, -bean.width / 2, -bean.height / 2, bean.width, bean.height);
-                this.ctx.restore();
+                this.drawCoffeeBean(bean.x, bean.y, bean.width, bean.height, bean.isGolden, bean.rotation);
             }
         });
 
@@ -242,7 +249,7 @@ class CatcherGame {
 
         // Draw and update floating texts
         this.floatingTexts.forEach((t, idx) => {
-            t.yOffset -= 1;
+            t.yOffset -= 1.2;
             t.alpha -= 0.03;
             if (t.alpha <= 0) {
                 this.floatingTexts.splice(idx, 1);
@@ -250,7 +257,7 @@ class CatcherGame {
                 this.ctx.save();
                 this.ctx.globalAlpha = t.alpha;
                 this.ctx.fillStyle = t.color || '#ffffff';
-                this.ctx.font = `bold 18px Fredoka`;
+                this.ctx.font = 'bold 18px Fredoka';
                 this.ctx.textAlign = 'center';
                 this.ctx.fillText(t.text, t.x, t.y + t.yOffset);
                 this.ctx.restore();
@@ -258,6 +265,76 @@ class CatcherGame {
         });
 
         requestAnimationFrame(() => this.drawLoop());
+    }
+
+    // Native Canvas 2D Coffee Bean Renderer (100% reliable)
+    drawCoffeeBean(x, y, width, height, isGolden, rotation) {
+        this.ctx.save();
+        this.ctx.translate(x, y);
+        this.ctx.rotate(rotation);
+
+        const rx = width / 2;
+        const ry = height / 2;
+
+        // Outer Bean Body
+        this.ctx.fillStyle = isGolden ? '#ffd700' : '#5c3826';
+        this.ctx.strokeStyle = isGolden ? '#ca8a04' : '#331e13';
+        this.ctx.lineWidth = 3;
+        this.ctx.beginPath();
+        this.ctx.ellipse(0, 0, rx, ry, -Math.PI / 12, 0, Math.PI * 2);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        // S-curve crack line
+        this.ctx.strokeStyle = isGolden ? '#b45309' : '#26140b';
+        this.ctx.lineWidth = 3;
+        this.ctx.lineCap = 'round';
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, -ry * 0.75);
+        this.ctx.bezierCurveTo(rx * 0.35, -ry * 0.25, -rx * 0.35, ry * 0.25, 0, ry * 0.75);
+        this.ctx.stroke();
+
+        // Sheen highlight
+        this.ctx.fillStyle = isGolden ? '#fff9a6' : '#8d5b42';
+        this.ctx.beginPath();
+        this.ctx.ellipse(-rx * 0.35, -ry * 0.2, rx * 0.18, ry * 0.3, -Math.PI / 6, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        this.ctx.restore();
+    }
+
+    // Native Canvas 2D Cup Renderer
+    drawCup(x, y, width, height) {
+        this.ctx.save();
+        
+        // Cup Body
+        this.ctx.fillStyle = '#ffab40';
+        this.ctx.strokeStyle = '#e65100';
+        this.ctx.lineWidth = 3.5;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + 5, y);
+        this.ctx.lineTo(x + width - 5, y);
+        this.ctx.lineTo(x + width - 15, y + height);
+        this.ctx.lineTo(x + 15, y + height);
+        this.ctx.closePath();
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        // Handle
+        this.ctx.beginPath();
+        this.ctx.arc(x + width - 8, y + height / 2, 10, -Math.PI/2, Math.PI/2);
+        this.ctx.strokeStyle = '#ffab40';
+        this.ctx.lineWidth = 4.5;
+        this.ctx.stroke();
+
+        // LUUQ text on cup
+        this.ctx.fillStyle = '#e65100';
+        this.ctx.font = 'bold 13px Fredoka';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillText('LUUQ', x + width / 2, y + height / 2);
+
+        this.ctx.restore();
     }
 
     createExplosion(x, y, isGolden, count = 12) {
@@ -304,6 +381,7 @@ class CatcherGame {
         clearInterval(this.timerInterval);
         this.canvas.removeEventListener('mousemove', this.mouseMoveHandler);
         this.canvas.removeEventListener('touchmove', this.touchMoveHandler);
+        window.removeEventListener('keydown', this.keyDownHandler);
         this.container.innerHTML = '';
         const statusContainer = document.querySelector('.stage-status');
         if (statusContainer) statusContainer.innerHTML = '';
