@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUUQ Kids Club - Eğlenceli Oyunlar</title>
+    <meta name="description" content="LUUQ Cafe çocuklar için özel hazırlanmış, eğlenceli ve geliştirici 7 mini oyun portalı.">
+    <!-- Google Fonts: Outfit & Fredoka for kid-friendly aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Background Elements for Premium Aesthetic -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div id="app-container">
+        
+        <!-- SECTION 1: CHARACTER SELECTION -->
+        <section id="char-selection-screen" class="screen active">
+            <div class="logo-container">
+                <div class="kids-logo">LUUQ<span>Kids</span></div>
+            </div>
+            <h1 class="screen-title">Karakterini Seç!</h1>
+            <div class="character-cards">
+                <!-- Girl Card -->
+                <div class="char-card" id="char-girl" onclick="selectCharacter('girl')">
+                    <div class="char-avatar-container">
+                        <svg class="avatar-svg" viewBox="0 0 100 100">
+                            <!-- Girl SVG Face -->
+                            <circle cx="50" cy="50" r="30" fill="#FFE0B2" />
+                            <!-- Hair Pigtails -->
+                            <circle cx="18" cy="30" r="12" fill="#FFB74D" />
+                            <circle cx="82" cy="30" r="12" fill="#FFB74D" />
+                            <rect x="15" y="27" width="6" height="6" rx="2" fill="#FF5252" />
+                            <rect x="79" y="27" width="6" height="6" rx="2" fill="#FF5252" />
+                            <!-- Hair bangs -->
+                            <path d="M 20,38 Q 50,20 80,38 Q 50,30 20,38 Z" fill="#FFB74D" />
+                            <!-- Eyes -->
+                            <circle cx="42" cy="48" r="3.5" fill="#2E7D32" />
+                            <circle cx="43" cy="47" r="1" fill="#FFFFFF" />
+                            <circle cx="58" cy="48" r="3.5" fill="#2E7D32" />
+                            <circle cx="59" cy="47" r="1" fill="#FFFFFF" />
+                            <!-- Cheeks -->
+                            <circle cx="36" cy="54" r="3" fill="#FF8A80" opacity="0.6" />
+                            <circle cx="64" cy="54" r="3" fill="#FF8A80" opacity="0.6" />
+                            <!-- Mouth -->
+                            <path d="M 45,55 Q 50,62 55,55" stroke="#D32F2F" stroke-width="2" stroke-linecap="round" fill="none" />
+                            <!-- Body/Shirt -->
+                            <path d="M 32,80 Q 50,68 68,80 L 68,100 L 32,100 Z" fill="#FF5252" />
+                            <!-- Stripes -->
+                            <path d="M 33,86 Q 50,76 67,86" stroke="#FFFFFF" stroke-width="2.5" fill="none" />
+                            <path d="M 32,94 Q 50,84 68,94" stroke="#FFFFFF" stroke-width="2.5" fill="none" />
+                        </svg>
+                    </div>
+                    <h2 class="char-name">Kız</h2>
+                </div>
+
+                <!-- Boy Card -->
+                <div class="char-card" id="char-boy" onclick="selectCharacter('boy')">
+                    <div class="char-avatar-container">
+                        <svg class="avatar-svg" viewBox="0 0 100 100">
+                            <!-- Boy SVG Face -->
+                            <circle cx="50" cy="50" r="30" fill="#FFE0B2" />
+                            <!-- Hair -->
+                            <path d="M 20,40 Q 50,15 80,40 Q 50,25 20,40" fill="#8D6E63" />
+                            <path d="M 23,30 Q 35,10 50,22 Q 65,10 77,30 Z" fill="#8D6E63" />
+                            <!-- Cap (reversed) -->
+                            <path d="M 24,35 C 24,15 76,15 76,35 Z" fill="#29B6F6" />
+                            <path d="M 70,32 L 88,32 A 4 4 0 0 1 92,36 L 90,38 A 4 4 0 0 1 86,40 L 72,36 Z" fill="#039BE5" />
+                            <!-- Eyes -->
+                            <circle cx="42" cy="48" r="3.5" fill="#1565C0" />
+                            <circle cx="43" cy="47" r="1" fill="#FFFFFF" />
+                            <circle cx="58" cy="48" r="3.5" fill="#1565C0" />
+                            <circle cx="59" cy="47" r="1" fill="#FFFFFF" />
+                            <!-- Cheeks -->
+                            <circle cx="36" cy="54" r="3" fill="#FF8A80" opacity="0.6" />
+                            <circle cx="64" cy="54" r="3" fill="#FF8A80" opacity="0.6" />
+                            <!-- Mouth -->
+                            <path d="M 44,55 Q 50,63 56,55" stroke="#D32F2F" stroke-width="2" stroke-linecap="round" fill="none" />
+                            <!-- Body/Shirt -->
+                            <path d="M 32,80 Q 50,68 68,80 L 68,100 L 32,100 Z" fill="#0288D1" />
+                            <!-- Stripes -->
+                            <path d="M 33,86 Q 50,76 67,86" stroke="#FFFFFF" stroke-width="2.5" fill="none" />
+                            <path d="M 32,94 Q 50,84 68,94" stroke="#FFFFFF" stroke-width="2.5" fill="none" />
+                        </svg>
+                    </div>
+                    <h2 class="char-name">Erkek</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: GAME HUB -->
+        <section id="game-hub-screen" class="screen">
+            <header class="hub-header">
+                <div class="hub-logo">LUUQ<span>Kids</span></div>
+                <div class="user-profile" onclick="changeCharacter()">
+                    <span class="user-greeting">Merhaba!</span>
+                    <div id="header-avatar" class="mini-avatar"></div>
+                </div>
+            </header>
+
+            <div class="games-grid">
+                <!-- Game 1: Hafıza Kartları -->
+                <div class="game-card card-purple" onclick="launchGame('memory')">
+                    <div class="card-icon">🧠</div>
+                    <h3>Hafıza Kartı</h3>
+                    <p>Kartları eşleştir ve beynini çalıştır!</p>
+                    <button class="play-btn">Oyna</button>
+                </div>
+
+                <!-- Game 2: Renkli Yılan -->
+                <div class="game-card card-orange" onclick="launchGame('snake')">
+                    <div class="card-icon">🐍</div>
+                    <h3>Renkli Yılan</h3>
+                    <p>Renkli meyveleri topla, kuyruğunu büyüt!</p>
+                    <button class="play-btn">Oyna</button>
+                </div>
+
+                <!-- Game 3: Kahve Çekirdeği Yakala -->
+                <div class="game-card card-brown" onclick="launchGame('catcher')">
+                    <div class="card-icon">☕</div>
+                    <h3>Çekirdek Yakala</h3>
+                    <p>Yukarıdan düşen leziz çekirdekleri topla!</p>
+                    <button class="play-btn">Oyna</button>
+                </div>
+
+                <!-- Game 4: Karton Bardak Tasarla -->
+                <div class="game-card card-teal" onclick="launchGame('cup-designer')">
+                    <div class="card-icon">🎨</div>
+                    <h3>Bardak Tasarla</h3>
+                    <p>Kendi karton bardağını tasarla ve süsle!</p>
+                    <button class="play-btn">Oyna</button>
+                </div>
+
+                <!-- Game 5: Süt & Çikolata Labirenti -->
+                <div class="game-card card-pink" onclick="launchGame('maze')">
+                    <div class="card-icon">🌀</div>
+                    <h3>Süt Labirenti</h3>
+                    <p>Karakteri labirentten geçir, çikolataya ulaş!</p>
+                    <button class="play-btn">Oyna</button>
+                </div>
+
+                <!-- Game 6: Bisküvi Kulesi -->
+                <div class="game-card card-yellow" onclick="launchGame('tower')">
+                    <div class="card-icon">🥞</div>
+                    <h3>Bisküvi Kulesi</h3>
+                    <p>Kurabiyeleri üst üste koy, en yüksek kuleyi yap!</p>
+                    <button class="play-btn">Oyna</button>
+                </div>
+
+                <!-- Game 7: Boyama Kitabı -->
+                <div class="game-card card-blue" onclick="launchGame('coloring')">
+                    <div class="card-icon">🖌️</div>
+                    <h3>Boyama Kitabı</h3>
+                    <p>Hayvanları ve meyveleri dilediğince boya!</p>
+                    <button class="play-btn">Oyna</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: GAME STAGE -->
+        <section id="game-stage-screen" class="screen">
+            <header class="stage-header">
+                <button class="back-btn" onclick="exitGame()">← Geri Dön</button>
+                <div id="game-title-display">Oyun Ekranı</div>
+                <div class="stage-status">
+                    <!-- Dynamic status placeholder -->
+                </div>
+            </header>
+            <div id="game-wrapper">
+                <!-- Each game's container will be inserted/activated here -->
+                <div id="game-container-memory" class="game-container"></div>
+                <div id="game-container-snake" class="game-container"></div>
+                <div id="game-container-catcher" class="game-container"></div>
+                <div id="game-container-cup-designer" class="game-container"></div>
+                <div id="game-container-maze" class="game-container"></div>
+                <div id="game-container-tower" class="game-container"></div>
+                <div id="game-container-coloring" class="game-container"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Confetti Overlay -->
+    <div id="confetti-overlay"></div>
+
+    <!-- Game Scripts -->
+    <script src="app.js"></script>
+    <script src="games/memory.js"></script>
+    <script src="games/snake.js"></script>
+    <script src="games/catcher.js"></script>
+    <script src="games/cup-designer.js"></script>
+    <script src="games/maze.js"></script>
+    <script src="games/tower.js"></script>
+    <script src="games/coloring.js"></script>
+</body>
+</html>
