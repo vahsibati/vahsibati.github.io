@@ -10,140 +10,93 @@ class MazeGame {
         this.trail = [];
         this.isDragging = false;
         
-        // Target SVGs
+        // Target Avatar Image
         this.charImg = new Image();
-        this.milkImg = new Image();
-        this.chocolateImg = new Image();
+        this.isCharLoaded = false;
         
+        // 10 Levels with increasing maze grid sizes & seeds
         this.levels = [
-            // Level 1: 7x7 grid
-            {
-                grid: [
-                    [1, 1, 1, 1, 1, 1, 1],
-                    [1, 0, 0, 0, 1, 0, 1],
-                    [1, 0, 1, 0, 1, 0, 1],
-                    [1, 0, 1, 0, 0, 0, 1],
-                    [1, 1, 1, 1, 1, 0, 1],
-                    [1, 0, 0, 0, 0, 0, 1],
-                    [1, 1, 1, 1, 1, 1, 1]
-                ],
-                start: { r: 1, c: 1 },
-                end: { r: 5, c: 5 },
-                endType: 'milk'
-            },
-            // Level 2: 9x9 grid
-            {
-                grid: [
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1],
-                    [1, 0, 0, 0, 0, 0, 1, 0, 1],
-                    [1, 1, 1, 1, 1, 0, 1, 0, 1],
-                    [1, 0, 0, 0, 1, 0, 0, 0, 1],
-                    [1, 0, 1, 0, 1, 1, 1, 1, 1],
-                    [1, 0, 1, 0, 0, 0, 0, 0, 1],
-                    [1, 1, 1, 1, 1, 1, 1, 0, 1],
-                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1]
-                ],
-                start: { r: 1, c: 1 },
-                end: { r: 7, c: 7 },
-                endType: 'chocolate'
-            },
-            // Level 3: 11x11 grid
-            {
-                grid: [
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-                    [1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1],
-                    [1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
-                    [1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
-                    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-                    [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-                    [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1],
-                    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-                ],
-                start: { r: 1, c: 1 },
-                end: { r: 9, c: 9 },
-                endType: 'milk'
-            },
-            // Level 4: 13x13 grid
-            {
-                grid: [
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
-                    [1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
-                    [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-                    [1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
-                    [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
-                    [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
-                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-                ],
-                start: { r: 1, c: 1 },
-                end: { r: 11, c: 11 },
-                endType: 'chocolate'
-            },
-            // Level 5: 15x15 grid
-            {
-                grid: [
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-                    [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
-                    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
-                    [1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1],
-                    [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1],
-                    [1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1],
-                    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
-                    [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
-                    [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-                    [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1],
-                    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
-                    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
-                    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-                ],
-                start: { r: 1, c: 1 },
-                end: { r: 13, c: 13 },
-                endType: 'milk'
-            }
+            { size: 11, seed: 101, endType: 'milk' },
+            { size: 13, seed: 202, endType: 'chocolate' },
+            { size: 15, seed: 303, endType: 'milk' },
+            { size: 17, seed: 404, endType: 'chocolate' },
+            { size: 19, seed: 505, endType: 'milk' },
+            { size: 21, seed: 606, endType: 'chocolate' },
+            { size: 23, seed: 707, endType: 'milk' },
+            { size: 25, seed: 808, endType: 'chocolate' },
+            { size: 27, seed: 909, endType: 'milk' },
+            { size: 29, seed: 1010, endType: 'chocolate' }
         ];
 
-        this.initImages();
+        this.currentMaze = null;
+        this.initCharImage();
     }
 
-    initImages() {
+    initCharImage() {
         const charType = state.selectedCharacter || 'girl';
         const rawCharSVG = AVATAR_SVGS[charType];
         
-        const rawMilkSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <path d="M 35,80 L 65,80 L 65,40 Q 65,30 55,25 L 55,15 L 45,15 L 45,25 Q 35,30 35,40 Z" fill="#ffffff" stroke="#90caf9" stroke-width="4"/>
-            <rect x="42" y="8" width="16" height="7" rx="2" fill="#ff5252" />
-            <rect x="37" y="45" width="26" height="15" fill="#90caf9" opacity="0.3" />
-            <text x="50" y="56" font-size="10" font-family="Fredoka" fill="#1e88e5" font-weight="bold" text-anchor="middle">SÜT</text>
-        </svg>`;
-
-        const rawChocolateSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <rect x="20" y="15" width="60" height="70" rx="8" fill="#4e342e" stroke="#3e2723" stroke-width="4"/>
-            <!-- Grid lines for chocolate chunks -->
-            <line x1="40" y1="15" x2="40" y2="85" stroke="#3e2723" stroke-width="4"/>
-            <line x1="60" y1="15" x2="60" y2="85" stroke="#3e2723" stroke-width="4"/>
-            <line x1="20" y1="38" x2="80" y2="38" stroke="#3e2723" stroke-width="4"/>
-            <line x1="20" y1="62" x2="80" y2="62" stroke="#3e2723" stroke-width="4"/>
-            <!-- Wrapper at bottom -->
-            <path d="M 20,60 L 80,60 L 80,85 L 20,85 Z" fill="#ff5252" />
-            <path d="M 20,60 L 80,60 L 80,66 L 20,66 Z" fill="#ffd740" />
-        </svg>`;
-
+        this.charImg.onload = () => {
+            this.isCharLoaded = true;
+        };
         this.charImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawCharSVG);
-        this.milkImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawMilkSVG);
-        this.chocolateImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawChocolateSVG);
+    }
+
+    // DFS Recursive Backtracker Algorithm for Genuine Complex Mazes
+    generateComplexMaze(size, seed) {
+        if (size % 2 === 0) size += 1;
+        
+        // Fill grid with walls (1)
+        const grid = Array.from({ length: size }, () => Array(size).fill(1));
+        
+        const stack = [];
+        const startR = 1, startC = 1;
+        grid[startR][startC] = 0;
+        stack.push({ r: startR, c: startC });
+        
+        let s = seed;
+        const rng = () => {
+            let x = Math.sin(s++) * 10000;
+            return x - Math.floor(x);
+        };
+
+        const directions = [
+            { dr: -2, dc: 0 },
+            { dr: 2, dc: 0 },
+            { dr: 0, dc: -2 },
+            { dr: 0, dc: 2 }
+        ];
+
+        while (stack.length > 0) {
+            const current = stack[stack.length - 1];
+            const unvisited = [];
+
+            for (const dir of directions) {
+                const nr = current.r + dir.dr;
+                const nc = current.c + dir.dc;
+                
+                if (nr > 0 && nr < size - 1 && nc > 0 && nc < size - 1) {
+                    if (grid[nr][nc] === 1) {
+                        unvisited.push({ r: nr, c: nc, dir });
+                    }
+                }
+            }
+
+            if (unvisited.length > 0) {
+                const chosen = unvisited[Math.floor(rng() * unvisited.length)];
+                const midR = current.r + chosen.dir.dr / 2;
+                const midC = current.c + chosen.dir.dc / 2;
+                
+                grid[midR][midC] = 0;
+                grid[chosen.r][chosen.c] = 0;
+                
+                stack.push({ r: chosen.r, c: chosen.c });
+            } else {
+                stack.pop();
+            }
+        }
+
+        return grid;
     }
 
     start() {
@@ -153,9 +106,22 @@ class MazeGame {
 
     loadLevel(levelIndex) {
         this.currentLevel = levelIndex;
-        const level = this.levels[this.currentLevel];
-        this.playerPos = { ...level.start };
-        this.trail = [`${this.playerPos.r},${this.playerPos.c}`];
+        const config = this.levels[this.currentLevel];
+        
+        // Generate complex maze layout
+        const grid = this.generateComplexMaze(config.size, config.seed);
+        const endR = config.size - 2;
+        const endC = config.size - 2;
+
+        this.currentMaze = {
+            grid: grid,
+            start: { r: 1, c: 1 },
+            end: { r: endR, c: endC },
+            endType: config.endType
+        };
+
+        this.playerPos = { r: 1, c: 1 };
+        this.trail = [`1,1`];
         this.isDragging = false;
         
         this.setupHTML();
@@ -168,7 +134,7 @@ class MazeGame {
         this.container.innerHTML = `
             <div class="maze-game-container">
                 <canvas id="mazeCanvas" width="400" height="400"></canvas>
-                <div class="maze-instructions">Karakteri parmağınla veya farenle sürükleyerek hedefe ulaştır!</div>
+                <div class="maze-instructions">Çıkmaz sokaklara dikkat et! Parmağınla veya farenle sürükleyerek hedefe ulaş!</div>
             </div>
         `;
         this.canvas = document.getElementById('mazeCanvas');
@@ -179,7 +145,7 @@ class MazeGame {
         const statusContainer = document.querySelector('.stage-status');
         if (statusContainer) {
             statusContainer.innerHTML = `
-                <div class="status-item">Seviye: <span id="maze-level">${this.currentLevel + 1}/5</span></div>
+                <div class="status-item">Zorluk Seviyesi: <span id="maze-level">${this.currentLevel + 1}/10</span></div>
             `;
         }
     }
@@ -192,7 +158,7 @@ class MazeGame {
             const x = (clientX - rect.left) * scaleX;
             const y = (clientY - rect.top) * scaleY;
             
-            const gridLen = this.levels[this.currentLevel].grid.length;
+            const gridLen = this.currentMaze.grid.length;
             const cellSize = this.canvas.width / gridLen;
             
             return {
@@ -201,38 +167,62 @@ class MazeGame {
             };
         };
 
+        const tryMoveTo = (targetCell) => {
+            const grid = this.currentMaze.grid;
+            let moved = false;
+            
+            while (true) {
+                let dr = targetCell.r - this.playerPos.r;
+                let dc = targetCell.c - this.playerPos.c;
+                
+                if (dr === 0 && dc === 0) break;
+                
+                let stepR = this.playerPos.r + (dr !== 0 ? Math.sign(dr) : 0);
+                let stepC = this.playerPos.c + (dc !== 0 ? Math.sign(dc) : 0);
+
+                if (Math.abs(dr) > 0 && Math.abs(dc) > 0) break;
+
+                if (stepR >= 0 && stepR < grid.length && stepC >= 0 && stepC < grid[0].length) {
+                    if (grid[stepR][stepC] === 0) {
+                        this.playerPos = { r: stepR, c: stepC };
+                        const key = `${stepR},${stepC}`;
+                        if (!this.trail.includes(key)) {
+                            this.trail.push(key);
+                        }
+                        moved = true;
+                        if (this.playerPos.r === this.currentMaze.end.r && this.playerPos.c === this.currentMaze.end.c) {
+                            this.checkWinCondition();
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+
+            if (moved) {
+                soundEngine.play('pop');
+                this.draw();
+            }
+        };
+
         const handleStart = (clientX, clientY) => {
             const cell = getCellFromCoords(clientX, clientY);
             if (cell.r === this.playerPos.r && cell.c === this.playerPos.c) {
                 this.isDragging = true;
                 soundEngine.play('click');
+            } else {
+                // Tap adjacent step
+                tryMoveTo(cell);
             }
         };
 
         const handleMove = (clientX, clientY) => {
             if (!this.isDragging) return;
             const cell = getCellFromCoords(clientX, clientY);
-            const grid = this.levels[this.currentLevel].grid;
-            
-            // Validate if cell is adjacent to current position
-            const dr = Math.abs(cell.r - this.playerPos.r);
-            const dc = Math.abs(cell.c - this.playerPos.c);
-            
-            if ((dr === 1 && dc === 0) || (dr === 0 && dc === 1)) {
-                // Check walls
-                if (cell.r >= 0 && cell.r < grid.length && cell.c >= 0 && cell.c < grid[0].length) {
-                    if (grid[cell.r][cell.c] === 0) {
-                        this.playerPos = cell;
-                        const key = `${cell.r},${cell.c}`;
-                        if (!this.trail.includes(key)) {
-                            this.trail.push(key);
-                        }
-                        soundEngine.play('pop');
-                        this.draw();
-                        this.checkWinCondition();
-                    }
-                }
-            }
+            tryMoveTo(cell);
         };
 
         const handleEnd = () => {
@@ -259,14 +249,13 @@ class MazeGame {
         }, { passive: false });
         this.canvas.addEventListener('touchend', handleEnd);
 
-        // Reference saving
         this.winMouseUpRef = handleEnd;
     }
 
     draw() {
-        if (!this.ctx) return;
+        if (!this.ctx || !this.currentMaze) return;
         
-        const grid = this.levels[this.currentLevel].grid;
+        const grid = this.currentMaze.grid;
         const gridLen = grid.length;
         const cellSize = this.canvas.width / gridLen;
         
@@ -281,66 +270,149 @@ class MazeGame {
                 const y = r * cellSize;
 
                 if (grid[r][c] === 1) {
-                    // Wall
+                    // Wall Block
                     this.ctx.fillStyle = '#63259b';
-                    this.ctx.beginPath();
-                    // Draw slightly rounded wall blocks
-                    this.ctx.roundRect(x + 1, y + 1, cellSize - 2, cellSize - 2, 6);
-                    this.ctx.fill();
+                    this.ctx.fillRect(x, y, cellSize, cellSize);
                 } else {
-                    // Path
+                    // Path Corridor
                     this.ctx.fillStyle = '#1e083a';
                     this.ctx.fillRect(x, y, cellSize, cellSize);
                 }
             }
         }
 
-        // Draw Trail (Sparkly dots)
-        this.ctx.fillStyle = 'rgba(45, 212, 191, 0.6)';
+        // Draw Visited Path Trail
+        this.ctx.fillStyle = 'rgba(45, 212, 191, 0.7)';
         this.trail.forEach(posStr => {
             const [tr, tc] = posStr.split(',').map(Number);
             const cx = tc * cellSize + cellSize / 2;
             const cy = tr * cellSize + cellSize / 2;
             this.ctx.beginPath();
-            this.ctx.arc(cx, cy, cellSize * 0.2, 0, Math.PI * 2);
+            this.ctx.arc(cx, cy, Math.max(2, cellSize * 0.25), 0, Math.PI * 2);
             this.ctx.fill();
         });
 
-        // Draw Goal (End point node)
-        const level = this.levels[this.currentLevel];
-        const goalX = level.end.c * cellSize;
-        const goalY = level.end.r * cellSize;
-        const activeGoalImg = level.endType === 'milk' ? this.milkImg : this.chocolateImg;
-        this.ctx.drawImage(activeGoalImg, goalX + 2, goalY + 2, cellSize - 4, cellSize - 4);
+        // Draw Goal Target (Native 2D Canvas rendering)
+        const goalX = this.currentMaze.end.c * cellSize;
+        const goalY = this.currentMaze.end.r * cellSize;
 
-        // Draw Player (Start/Current point node)
+        if (this.currentMaze.endType === 'milk') {
+            this.drawMilkBottle(goalX, goalY, cellSize);
+        } else {
+            this.drawChocolateBar(goalX, goalY, cellSize);
+        }
+
+        // Draw Player Avatar
         const playerX = this.playerPos.c * cellSize;
         const playerY = this.playerPos.r * cellSize;
-        this.ctx.drawImage(this.charImg, playerX + 2, playerY + 2, cellSize - 4, cellSize - 4);
+        if (this.isCharLoaded) {
+            this.ctx.drawImage(this.charImg, playerX, playerY, cellSize, cellSize);
+        } else {
+            this.ctx.fillStyle = '#ffe0b2';
+            this.ctx.beginPath();
+            this.ctx.arc(playerX + cellSize/2, playerY + cellSize/2, cellSize*0.4, 0, Math.PI * 2);
+            this.ctx.fill();
+        }
+    }
+
+    // Native Canvas 2D Milk Bottle Renderer
+    drawMilkBottle(x, y, size) {
+        this.ctx.save();
+        
+        // Bottle Body
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.strokeStyle = '#90caf9';
+        this.ctx.lineWidth = Math.max(1, size * 0.08);
+        this.ctx.beginPath();
+        this.ctx.roundRect(x + size * 0.22, y + size * 0.32, size * 0.56, size * 0.6, 3);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        // Bottle Neck
+        this.ctx.beginPath();
+        this.ctx.rect(x + size * 0.35, y + size * 0.16, size * 0.3, size * 0.16);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        // Red Cap
+        this.ctx.fillStyle = '#ff5252';
+        this.ctx.beginPath();
+        this.ctx.roundRect(x + size * 0.3, y + size * 0.06, size * 0.4, size * 0.1, 2);
+        this.ctx.fill();
+
+        // Blue Label
+        this.ctx.fillStyle = '#64b5f6';
+        this.ctx.fillRect(x + size * 0.22, y + size * 0.5, size * 0.56, size * 0.22);
+
+        // Text "SÜT" (only if cell size is large enough)
+        if (size >= 20) {
+            this.ctx.fillStyle = '#ffffff';
+            this.ctx.font = `bold ${Math.floor(size * 0.15)}px Fredoka`;
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillText('SÜT', x + size * 0.5, y + size * 0.61);
+        }
+
+        this.ctx.restore();
+    }
+
+    // Native Canvas 2D Chocolate Bar Renderer
+    drawChocolateBar(x, y, size) {
+        this.ctx.save();
+
+        // Chocolate Base
+        this.ctx.fillStyle = '#4e342e';
+        this.ctx.strokeStyle = '#3e2723';
+        this.ctx.lineWidth = Math.max(1, size * 0.08);
+        this.ctx.beginPath();
+        this.ctx.roundRect(x + size * 0.12, y + size * 0.12, size * 0.76, size * 0.76, 3);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        // Grid lines
+        this.ctx.strokeStyle = '#3e2723';
+        this.ctx.lineWidth = Math.max(1, size * 0.05);
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + size * 0.5, y + size * 0.12);
+        this.ctx.lineTo(x + size * 0.5, y + size * 0.88);
+        this.ctx.moveTo(x + size * 0.12, y + size * 0.5);
+        this.ctx.lineTo(x + size * 0.88, y + size * 0.5);
+        this.ctx.stroke();
+
+        // Red Wrapper at bottom
+        this.ctx.fillStyle = '#ff5252';
+        this.ctx.beginPath();
+        this.ctx.roundRect(x + size * 0.12, y + size * 0.52, size * 0.76, size * 0.36, [0, 0, 3, 3]);
+        this.ctx.fill();
+
+        // Gold Trim
+        this.ctx.fillStyle = '#ffd740';
+        this.ctx.fillRect(x + size * 0.12, y + size * 0.52, size * 0.76, size * 0.06);
+
+        this.ctx.restore();
     }
 
     checkWinCondition() {
-        const level = this.levels[this.currentLevel];
-        if (this.playerPos.r === level.end.r && this.playerPos.c === level.end.c) {
+        if (this.playerPos.r === this.currentMaze.end.r && this.playerPos.c === this.currentMaze.end.c) {
             this.isDragging = false;
             triggerConfetti();
             
             if (this.currentLevel < this.levels.length - 1) {
-                // Go to next level
+                // Next level
                 setTimeout(() => {
                     this.loadLevel(this.currentLevel + 1);
-                }, 1500);
+                }, 1200);
             } else {
                 // Game completely won!
                 setTimeout(() => {
                     this.container.innerHTML = `
                         <div class="game-win-overlay">
-                            <h2>Tebrikler! 🏆</h2>
-                            <p>Tüm labirentleri başarıyla tamamladın!</p>
+                            <h2>Zekâ Şampiyonu! 🏆</h2>
+                            <p>10 Karmaşık Labirentin Tamamını Başarıyla Çözdün!</p>
                             <button class="play-again-btn" onclick="state.activeGameInstance.start()">Tekrar Oyna</button>
                         </div>
                     `;
-                }, 1000);
+                }, 800);
             }
         }
     }

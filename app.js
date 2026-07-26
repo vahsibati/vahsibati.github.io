@@ -180,10 +180,20 @@ function selectScreen(screenId) {
     document.getElementById(screenId).classList.add('active');
 }
 
+function applyTheme(charType) {
+    document.body.classList.remove('theme-girl', 'theme-boy');
+    if (charType === 'girl') {
+        document.body.classList.add('theme-girl');
+    } else if (charType === 'boy') {
+        document.body.classList.add('theme-boy');
+    }
+}
+
 function selectCharacter(charType) {
     soundEngine.play('click');
     state.selectedCharacter = charType;
     localStorage.setItem('luuq_char', charType);
+    applyTheme(charType);
     setupHubProfile();
     selectScreen('game-hub-screen');
 }
@@ -287,10 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
         soundEngine.init();
     }, { once: true });
     
+    // Apply previously saved theme if available, but ALWAYS present character selection first
     if (state.selectedCharacter) {
-        setupHubProfile();
-        selectScreen('game-hub-screen');
-    } else {
-        selectScreen('char-selection-screen');
+        applyTheme(state.selectedCharacter);
     }
+    
+    selectScreen('char-selection-screen');
 });
