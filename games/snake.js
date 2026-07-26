@@ -14,12 +14,14 @@ class SnakeGame {
         this.particles = [];
         this.floatingTexts = [];
         this.isGameOver = false;
+        this.hasStarted = false;
         this.inputQueue = [];
     }
 
     start() {
         this.score = 0;
         this.isGameOver = false;
+        this.hasStarted = false;
         this.snake = [
             { x: 10, y: 10 },
             { x: 9, y: 10 },
@@ -36,7 +38,7 @@ class SnakeGame {
         this.bindEvents();
         
         if (this.gameInterval) clearInterval(this.gameInterval);
-        this.gameInterval = setInterval(() => this.tick(), 150); // Kid friendly speed
+        this.gameInterval = null;
         this.drawLoop();
     }
 
@@ -83,9 +85,17 @@ class SnakeGame {
     }
 
     bindEvents() {
+        const ensureStarted = () => {
+            if (!this.hasStarted && !this.isGameOver) {
+                this.hasStarted = true;
+                soundEngine.play('click');
+                if (this.gameInterval) clearInterval(this.gameInterval);
+                this.gameInterval = setInterval(() => this.tick(), 150); // Kid friendly speed
+            }
+        };
+
         // Keyboard controls
         this.keydownHandler = (e) => {
-            const head = this.snake[0];
             let nextDx = this.dx;
             let nextDy = this.dy;
             
@@ -114,12 +124,14 @@ class SnakeGame {
                     return;
             }
             e.preventDefault();
+            ensureStarted();
             this.inputQueue.push({ dx: nextDx, dy: nextDy });
         };
         window.addEventListener('keydown', this.keydownHandler);
 
         // Mobile touch controls
         const handleDirection = (dName) => {
+            ensureStarted();
             let nextDx = this.dx;
             let nextDy = this.dy;
             if (dName === 'up' && this.dy === 0) { nextDx = 0; nextDy = -1; }
@@ -139,10 +151,16 @@ class SnakeGame {
         if (downBtn) downBtn.addEventListener('click', () => handleDirection('down'));
         if (leftBtn) leftBtn.addEventListener('click', () => handleDirection('left'));
         if (rightBtn) rightBtn.addEventListener('click', () => handleDirection('right'));
+
+        // Canvas click/touch to start
+        if (this.canvas) {
+            this.canvas.addEventListener('click', () => ensureStarted());
+            this.canvas.addEventListener('touchstart', () => ensureStarted(), { passive: true });
+        }
     }
 
     tick() {
-        if (this.isGameOver) return;
+        if (this.isGameOver || !this.hasStarted) return;
 
         // Apply queued movement
         if (this.inputQueue.length > 0) {
@@ -198,35 +216,36 @@ class SnakeGame {
                 y: y,
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
+                alpha: 1.0,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                size: Math.random() * 4 + 3,
-                alpha: 1.0
+                size: Math.random() * 4 + 2
             });
         }
     }
 
     drawLoop() {
         if (!this.ctx) return;
-        
-        // Clear canvas
+
+        // Clear Canvas
         this.ctx.fillStyle = '#2c104e';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Draw grid lines faintly for visual guide
-        this.ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+        // Draw Grid pattern background
+        this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
         this.ctx.lineWidth = 1;
-        for (let i = 0; i < this.tileCount; i++) {
+        for (let i = 0; i <= this.tileCount; i++) {
             this.ctx.beginPath();
             this.ctx.moveTo(i * this.gridSize, 0);
             this.ctx.lineTo(i * this.gridSize, this.canvas.height);
             this.ctx.stroke();
+
             this.ctx.beginPath();
             this.ctx.moveTo(0, i * this.gridSize);
             this.ctx.lineTo(this.canvas.width, i * this.gridSize);
             this.ctx.stroke();
         }
 
-        // Draw food (Shiny glowing berry)
+        // Draw Food (Glowing Candy / Berry)
         const fx = this.food.x * this.gridSize + this.gridSize / 2;
         const fy = this.food.y * this.gridSize + this.gridSize / 2;
         
@@ -245,7 +264,7 @@ class SnakeGame {
         this.ctx.arc(fx, fy, 7, 0, Math.PI * 2);
         this.ctx.fill();
         
-        // Food leaf (little detail)
+        // Food leaf
         this.ctx.fillStyle = '#2dd4bf';
         this.ctx.beginPath();
         this.ctx.ellipse(fx + 3, fy - 7, 3, 2, Math.PI / 4, 0, Math.PI * 2);
@@ -271,7 +290,6 @@ class SnakeGame {
                 let eyeOffsetRightX = 4;
                 let eyeOffsetY = -4;
                 
-                // Adjust eye positions based on direction
                 if (this.dx === 1) { eyeOffsetLeftX = 3; eyeOffsetRightX = 3; eyeOffsetY = -4; }
                 else if (this.dx === -1) { eyeOffsetLeftX = -3; eyeOffsetRightX = -3; eyeOffsetY = -4; }
                 else if (this.dy === 1) { eyeOffsetLeftX = -4; eyeOffsetRightX = 4; eyeOffsetY = 3; }
@@ -326,12 +344,44 @@ class SnakeGame {
                 this.ctx.save();
                 this.ctx.globalAlpha = t.alpha;
                 this.ctx.fillStyle = '#ffffff';
-                this.ctx.font = `bold 16px ${state.primaryFont || 'Fredoka'}`;
+                this.ctx.font = 'bold 16px Fredoka, sans-serif';
                 this.ctx.textAlign = 'center';
                 this.ctx.fillText(t.text, t.x, t.y + t.yOffset);
                 this.ctx.restore();
             }
         });
+
+        // Draw Start Overlay Banner when game has not started yet
+        if (!this.hasStarted && !this.isGameOver) {
+            this.ctx.save();
+            this.ctx.fillStyle = 'rgba(20, 10, 40, 0.65)';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+            // Banner Card
+            this.ctx.fillStyle = '#63259b';
+            this.ctx.beginPath();
+            if (typeof this.ctx.roundRect === 'function') {
+                this.ctx.roundRect(40, 150, 320, 100, 16);
+            } else {
+                this.ctx.rect(40, 150, 320, 100);
+            }
+            this.ctx.fill();
+            this.ctx.strokeStyle = '#ffab40';
+            this.ctx.lineWidth = 3;
+            this.ctx.stroke();
+
+            // Text
+            this.ctx.fillStyle = '#ffffff';
+            this.ctx.font = 'bold 20px Fredoka, sans-serif';
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillText('BAŞLAMAK İÇİN TIKLA 🐍', 200, 188);
+            
+            this.ctx.fillStyle = '#ffab40';
+            this.ctx.font = '14px Outfit, sans-serif';
+            this.ctx.fillText('veya Yön Tuşlarına Bas!', 200, 218);
+            this.ctx.restore();
+        }
 
         if (!this.isGameOver) {
             requestAnimationFrame(() => this.drawLoop());
@@ -340,7 +390,7 @@ class SnakeGame {
 
     gameOver() {
         this.isGameOver = true;
-        clearInterval(this.gameInterval);
+        if (this.gameInterval) clearInterval(this.gameInterval);
         soundEngine.play('fail');
 
         setTimeout(() => {
